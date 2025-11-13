@@ -54,3 +54,5 @@
 # chmod 700 /usr/local/sbin/wg-startup.sh
 # restorecon -Fvvv /usr/local/sbin/wg-startup.sh
 # systemctl enable wg-startup
+
+dnf install -y libvpx-1.14.1-2.el10
