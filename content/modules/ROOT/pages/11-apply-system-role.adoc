@@ -1,3 +1,5 @@
+:imagesdir: ../assets/images
+
 == Apply RHEL System Role
 
 IMPORTANT: Before starting this challenge, make sure that your hosts
@@ -23,21 +25,27 @@ Next we’ll do the following.
 
 [arabic]
 . Select both hosts.
-. Click `+Select Action+`.
-. Select `+Run all Ansible roles+`.
+. Click on the down arrow next to `+Schedule a job+`.
+
+.Down arrow
+image::downarrow.png[down arrow]
+
+. Select `+Run Ansible roles+`.
+
+
 
 .Apply system roles
 image::applysystemroles.png[apply system roles]
 
-In the `+Overview+` menu you’ll be shown the status of the jobs.
+If you want to check the status of the job, type `+jobs+` in the search bar and press enter.
 
-.System role
-image::systemrolestatus.png[system role]
+.Jobs Search
+image::search-jobs.png[jobs search]
 
-If you want, click on a host to view the application of the system role.
+In the `+Job invocations+` menu, you can see the status of the job.
 
-.Firewall system role job details
-image::firewallsteps.png[firewall stpes]
+.Job invocations
+image::job-invocations.png[job-invocations]
 
 You can verify that port 80/tcp has been opened by doing the following.
 
