@@ -53,7 +53,10 @@ to port 80/tcp. In the Parameters menu do the following:
 [arabic]
 . Click `+Add Parameter+`.
 . Name the parameter `+firewall+`.
+
 WARNING: Parameter names are case sensitive. `+firewall+` must be in lower case.
+
+[arabic, start=3]
 . Choose the type `+array+`.
 . Copy and paste the following into the `+value+` field.
 
