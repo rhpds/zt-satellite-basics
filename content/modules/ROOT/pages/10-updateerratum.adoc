@@ -97,8 +97,7 @@ Tracer will detect which of these services need to be restarted.
 [%collapsible]
 ====
 
-Click on a host (it doesn’t matter which, you’ll have to perform this
-procedure twice.)
+Click on the host `+rhel1+`.
 
 .Host
 image::errorhost.png[error host]
