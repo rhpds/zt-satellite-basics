@@ -1,3 +1,5 @@
+:imagesdir: ../assets/images
+
 == Configure a Host Group
 
 Red Hat Satellite provides several logical units for grouping hosts.
@@ -34,22 +36,16 @@ In the host group menu do the following:
 
 [arabic]
 . Name the host group `+Application Servers+`.
+
+[source,json]
+----
+Application Servers
+----
+
+[arabic, start=2]
 . Select `+satellite.lab+` as the content source.
 . Select the `+Test+` lifecycle environment.
 . Select the `+RHEL10+` content view.
-. Click on `+Ansible Roles+`
-
-.Host group details
-image::createhostgroup-new-1.png[1]
-
-In the Ansible Roles menu do the following:
-
-[arabic]
-. Click on `+rhel-system-roles.firewall+`.
-. Click on `+Parameters+`.
-
-.Assign the firewall ansible role
-image::createhostgroup2.png[2]
 
 We need to tell the firewall system role to allow incoming connections
 to port 80/tcp. In the Parameters menu do the following:
