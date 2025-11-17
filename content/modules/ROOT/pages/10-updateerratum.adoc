@@ -39,15 +39,6 @@ Select all of the Errata we just filtered.
 .Installable errata
 image::selectallerrata.png[../assets/selectallerrata]
 
-IMPORTANT: Increase the page size to select all the errata. If the number
-of errata exceed the maximum page size, you’ll have to run this
-operation multiple times or run it from the host > content > errata
-menu. For the purposes of this lab, it’s not necessary to apply all
-errata.
-
-.Pager
-image::pagersize.png[pager]
-
 You’ll be taken to the Apply Errata menu where you should do the
 following:
 
@@ -60,28 +51,13 @@ image::applyerratawizard.png[../assets/applyerratawizard]
 
 Click confirm to apply the errata.
 
-To view the application of Errata in real-time, click on the host
+To view the application of Errata in real-time, click on the accordion button next to the host
 `+rhel1+`.
-
-.Run job
-image::viewapplicationoferratahost.png[../assets/viewapplicationoferratahost]
-
-On the following page, you’ll be able to see the application process.
 
 .Job details
 image::process.png[../assets/process]
 
-To return to the job status page, click `+Back to Job+`.
-
-.Back to job button
-image::backtojob.png[../assets/backtojob]
-
-When the job is complete, the page will look like this.
-
-.Job completion
-image::completejobstatus.png[../assets/completejobstatus]
-
-Go to Hosts > All Hosts.
+When the job is complete, go to Hosts > All Hosts.
 
 ====
 =====
@@ -120,6 +96,11 @@ reboot.
 
 When you view the `+Traces+` menu, the list will be empty signifying no
 services require restart.
+
+You can check on the status of the job by typing `+jobs+` button and then on the `+Resolve traces+` job.
+
+.Job status
+image::traces-job-status.png[traces job status]
 
 ====
 =====

@@ -46,6 +46,10 @@ Application Servers
 . Select `+satellite.lab+` as the content source.
 . Select the `+Test+` lifecycle environment.
 . Select the `+RHEL10+` content view.
+. Click on `+Ansible Roles+`.
+
+.Host group details
+image::createhostgroup-new-1.png[create host group]
 
 We need to tell the firewall system role to allow incoming connections
 to port 80/tcp. In the Parameters menu do the following:

@@ -1,3 +1,5 @@
+:imagesdir: ../assets/images
+
 == Register Hosts
 
 Now we’ll register the hosts `+rhel1+` and `+rhel2+` to our Satellite
