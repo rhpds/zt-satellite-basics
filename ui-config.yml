@@ -23,6 +23,9 @@ antora:
       solveButton: false
 
 tabs:
+  - name: "Red Hat Hybrid Cloud Console"
+    url: https://console.redhat.com
+    external: true
   - name: "Satellite Web UI"
     url: https://satellite-${guid}.${domain}/
   - name: "satellite.lab terminal"
