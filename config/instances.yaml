@@ -1,7 +1,7 @@
 ---
 virtualmachines:
   - name: "satellite"
-    image: "satellite-server-rhdp-1-6-17-07-30-25"
+    image: "satellite-server-rhdp-1-6-18-10-11-25"
     bootloader: efi
     register_satellite: false
     memory: "32G"
@@ -73,7 +73,7 @@ virtualmachines:
           +WTV/ogDLLZX8gj6kg==
           -----END CERTIFICATE-----
   - name: "rhel1"
-    image: "rhel-10-0-06-17-25-2"
+    image: "rhel-10-1-11-13-25"
     bootloader: efi
     register_satellite: false
     memory: "4G"
@@ -91,7 +91,7 @@ virtualmachines:
       prefer_fqdn_over_hostname: true
       manage_etc_hosts: true
   - name: "rhel2"
-    image: "rhel-10-0-06-17-25-2"
+    image: "rhel-10-1-11-13-25"
     bootloader: efi
     register_satellite: false
     memory: "4G"

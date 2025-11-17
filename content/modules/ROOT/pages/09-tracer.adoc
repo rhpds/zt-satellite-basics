@@ -1,0 +1,239 @@
+:imagesdir: ../assets/images
+
+== Enable the Tracer service on RHEL hosts
+
+Often when software is updated, services on a host must be restarted
+before the new software can run. The tracer utility can detect when a
+service needs to be restarted, and notify you through Red Hat Satellite.
+
+To demonstrate this capability, we’ll install the
+`+katello-host-tools-tracer+` package on our hosts through remote
+execution. We’ll perform the following tasks:
+
+[arabic]
+. Synchronize the `+Satellite client 6+` repository to our Satellite
+server.
+. Make the repository available to our hosts by adding it to our
+`+RHEL9+` content view.
+. Install `+katello-host-tools-tracer+` on our hosts.
+
+=====
+.Add the Satellite client repository - DOCUMENTATION PURPOSES ONLY
+[%collapsible]
+====
+
+IMPORTANT: This section is for your documentation purposes. This step
+has already been performed for you. Read over this section and proceed
+to the next step ##below##.
+
+Go to `+Content+` and click on `+Red Hat Repositories+`.
+
+.Red Hat repos
+image::redhatrepositories.png[rh repos]
+
+Next add the `+satellite-client-6-for-rhel-10+` repository.
+
+[arabic]
+. Paste the following into the search bar.
+
+[source,bash]
+----
+satellite-client-6-for-rhel-10
+----
+
+[arabic, start=2]
+. Click the `+++` symbol.
+
+.Red Hat Satellite client repository
+image::client6.png[]
+====
+=====
+
+=====
+.Synchronize the Satellite client repository - DOCUMENTATION PURPOSES ONLY
+[%collapsible]
+====
+IMPORTANT: This section is for your documentation purposes. This step
+has already been performed for you. Read over this section and proceed
+to the next step ##below##.
+
+Next, we’ll navigate to the `+Products+` menu.
+
+.Products menu
+image::products.png[products]
+
+Click on `+Red Hat Enterprise Linux for x86_64+`.
+
+.RHEL products
+image::rhelproductclick.png[rhel product click]
+
+Do the following to synchronize the repository with Satellite.
+
+[arabic]
+. Select `+Red Hat Satellite Client 6 for RHEL 10 x86_64 RPMs+`.
+. Click `+Sync Now+`.
+
+.Sync Satellite Client repo now
+image::syncclientproduct.png[sync]
+
+====
+=====
+
+== Add the Satellite client repository to the RHEL10 content view
+
+Now that the repository containing the Tracer application is
+synchronized to Satellite, we’ll make it available to our hosts by
+adding and enabling the repository in our existing `+RHEL10+` content
+view.
+
+=====
+.Add the Satellite client repository to the RHEL10 content view
+[%collapsible]
+====
+
+Navigate to `+Content Views+`.
+
+.Content views menu
+image::contentview.png[cv]
+
+Click on the `+RHEL10+` content view.
+
+.RHEL10 Content View
+image::rhel10cv.png[rhel10cv]
+
+Click on the `+Repositories+` tab.
+
+.Repositories tab
+image::cvrepotab.png[repos]
+
+Select `+All+` from the `+Status+` dropdown to unhide the Satellite
+tools repository.
+
+.View all available repositories
+image::selectallcv.png[unhide]
+
+Add the repo.
+
+[arabic]
+. Select the repo `+Red Hat Satellite Client 6 for RHEL 10 x86_64 RPMs+`.
+. Click `+Add repositories+`.
+
+.Add the Satellite Client repository
+image::addclientrepo.png[add repos]
+
+Click `+Publish new version+`.
+
+.Publish a new version of the content view
+image::publishnewversion.png[]
+
+We’ll now publish a new version of the content view.
+
+[arabic]
+. Add a description to the new version of the content view. In this
+example we added `+Added the Satellite Client 6 repo.+`.
+. Click `+Promote+`.
+. Click on the `+Test+` lifecycle environment.
+. Click `+Next+`.
+
+.Publish content view wizard
+image::publishclientrepocv.png[pubcv]
+
+Click `+Finish+`.
+
+====
+=====
+
+== Enable access to the Satellite client repository
+
+Now we’ll enable access to the
+`+Red Hat Satellite Client 6 for RHEL 10 x86_64 RPMs+` repo by specifying
+it in the `+Activation Key+`. When new hosts are added, they will
+automatically receive access to the enabled repository so that Tracer
+can be installed.
+
+With existing hosts, there is one extra step to enable access to the tracer app which we’ll cover in the step after this.
+
+=====
+.Enable access to the Satellite client repository
+[%collapsible]
+====
+
+First, navigate to `+Activation Keys+`.
+
+.Activation keys
+image::akmenu.png[activation keys]
+
+Click on the `+RHEL10+` activation key.
+
+.RHEL10 Activation Key
+image::rhel10ak.png[rhel10ak]
+
+Click on `+Repository Sets+`.
+
+.RHEL10 activation key repository set
+image::rhel10akreposet.png[rhel10 ak repo set]
+
+Override the `+Red Hat Satellite Client 6 for RHEL 10 x86_64 RPMs+`
+repository to `+Enabled+`.
+
+[arabic]
+. Select the `+Red Hat Satellite Client 6 for RHEL 10 x86_64 RPMs+`
+repository.
+. Click `+Override to Enabled+`.
+
+.Override to enable the Satellite 6 client repo
+image::overrideenable.png[override]
+
+====
+=====
+
+== Install Tracer on existing hosts managed by Satellite
+
+Here’s the extra step we’ll need to perform to enable access to the
+Tracer app for our existing hosts. New hosts added after this step will
+automatically get access.
+
+=====
+.Install Tracer on existing hosts managed by Satellite
+[%collapsible]
+====
+
+Go back to the `+All hosts+` menu.
+
+.All hosts menu
+image::allhostsagain.png[allhostsagain]
+
+[arabic]
+. Select your hosts (rhel1 and rhel2).
+. Click `+Schedule a job+`.
+
+.Select RHEL systems
+image::scheduleremotejob.png[all host]
+
+In the `+Category and Template+` menu, click `+Next+`.
+
+.Run job wizard
+image::runjobtemplate.png[run template]
+
+In the `+Target hosts and inputs+` menu, do the following.
+
+[arabic]
+. Paste this command. It will enable the Satellite 6 client repo and
+install the Tracer software.
+
+[source,js]
+----
+dnf config-manager --set-enabled satellite-client-6-for-rhel-10-x86_64-rpms && dnf install -y katello-host-tools-tracer
+----
+
+[arabic, start=2]
+. Click `+Run on selected hosts+`.
+
+.Run job on selected hosts
+image::runonselectedhosts.png[]
+
+Tracer is now installed. We’ll see how it will help us in the next
+challenge, where we apply errata updates.
+
+.Tracer installed
+image::tracerinstalled.png[tracer installed]
