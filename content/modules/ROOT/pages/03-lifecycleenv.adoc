@@ -38,8 +38,16 @@ Click on `+Create Environment Path+`.
 .Create environment path
 image::createenvironment.png[../assets/createenvironment]
 
-Create a new environment. We’ll call this one `+Test+`. Then click
-`+Save+` to save it.
+Create a new environment.
+
+. We’ll call this environment `+Test+`.
+[source,js]
+----
+Test
+----
+
+[arabic, start=2]
+. Click `+Save+` to save it.
 
 .New environment menu
 image::newenvironment.png[../assets/newenvironment]

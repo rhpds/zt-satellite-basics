@@ -31,16 +31,16 @@ Click on `+Create Activation Key+`.
 .Create a new activation key
 image::createak.png[../assets/createak]
 
-We’ll name this activation key (1) `+RHEL10+`, select the (2) `+Test+`
-environment, select the (3) `+RHEL10+` content view and then click (4)
-`+save+`.
-
-For your cut/paste convenience:
-
+. We’ll name this activation key `+RHEL10+`
 [source,js]
 ----
 RHEL10
 ----
+
+[arabic, start=2]
+. Select the `+Test+` environment.
+. Select the `+RHEL10+` content view
+. Click `+save+`.
 
 IMPORTANT: The name of the activation key will be used to add hosts. The
 names must match or the hosts will not be registered.
