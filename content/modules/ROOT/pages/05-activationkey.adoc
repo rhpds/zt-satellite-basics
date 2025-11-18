@@ -1,3 +1,5 @@
+:imagesdir: ../assets/images
+
 == Create an Activation Key
 
 Activation keys provide a method to automate system registration and

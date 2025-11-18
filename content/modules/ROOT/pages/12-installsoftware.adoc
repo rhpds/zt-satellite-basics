@@ -1,3 +1,5 @@
+:imagesdir: ../assets/images
+
 == Install software
 
 We’ll install software on multiple hosts simultaneously, using a Host
@@ -94,13 +96,7 @@ Do the following:
 .Update packages wizard
 image::updatepackages.png[../assets/updatepackages]
 
-You’ll be taken to the job status page.
-
-.Job status
-image::statusinstall.png[../assets/statusinstall]
-
-You can check on the real-time installation progress by clicking on a
-host.
+You’ll be taken to the job status page. You can check on the real-time installation progress by clicking on a host.
 
 .Job details
 image::installtmuxstatusonhost.png[../assets/installtmuxstatusonhost]

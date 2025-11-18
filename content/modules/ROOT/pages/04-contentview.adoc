@@ -1,3 +1,5 @@
+:imagesdir: ../assets/images
+
 == Create a Content View
 
 In this challenge we’ll create a Content View. Red Hat Satellite uses
@@ -27,7 +29,7 @@ Click on `+Content Views+`.
 .Content View menu
 image::contentview.png[../assets/contentview]
 
-Click on `+Create New View+`.
+Click on `+Create content view+`.
 
 .Create a new content view
 image::createcontentview.png[../assets/createcontentview]

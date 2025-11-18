@@ -24,17 +24,17 @@ antora:
     - name: "07-registerhost"
       label: "Registerhost"
       solveButton: false
-    - name: "08-tracer"
+    - name: "08-iop-advisor"
+      label: "Iop Advisor"
+      solveButton: false
+    - name: "09-tracer"
       label: "Tracer"
       solveButton: false
-    - name: "09-updateerratum"
+    - name: "10-updateerratum"
       label: "Updateerratum"
       solveButton: false
-    - name: "10-apply-system-role"
+    - name: "11-apply-system-role"
       label: "Apply System Role"
-      solveButton: false
-    - name: "11-iop-advisor"
-      label: "Iop Advisor"
       solveButton: false
     - name: "12-installsoftware"
       label: "Installsoftware"

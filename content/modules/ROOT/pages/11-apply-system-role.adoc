@@ -1,0 +1,60 @@
+:imagesdir: ../assets/images
+
+== Apply RHEL System Role
+
+IMPORTANT: Before starting this challenge, make sure that your hosts
+have finished rebooting from the previous challenge. You can easily
+check by clicking on the terminal tab to check that you have a working
+session with each host.
+
+Earlier, we configured the our host group to have a system role applied
+to it. Specifically, port 80/tcp was to be opened. You can find out more
+about https://access.redhat.com/articles/3050101[RHEL System Roles
+here].
+
+=====
+.Apply RHEL System Role
+[%collapsible]
+====
+Once again, navigate to `+All Hosts+`.
+
+.All hosts
+image::allhostsagain.png[all hosts]
+
+Next we’ll do the following.
+
+[arabic]
+. Select both hosts.
+. Click on the down arrow next to `+Schedule a job+`.
+
+.Down arrow
+image::downarrow.png[down arrow]
+
+. Select `+Run Ansible roles+`.
+
+
+
+.Apply system roles
+image::applysystemroles.png[apply system roles]
+
+If you want to check the status of the job, type `+jobs+` in the search bar and press enter.
+
+.Jobs Search
+image::search-jobs.png[jobs search]
+
+In the `+Job invocations+` menu, you can see the status of the job.
+
+.Job invocations
+image::job-invocations.png[job-invocations]
+
+You can verify that port 80/tcp has been opened by doing the following.
+
+In either the `rhel1.lab terminal` or `rhel2.lab terminal`, run the following command.
+
+[source,bash,run]
+----
+firewall-cmd --list-all
+----
+
+.Firewall command output
+image::firewallcmdoutput.png[fwcmd]
