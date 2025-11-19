@@ -1,0 +1,94 @@
+== Filter content
+
+A powerful feature of Content Views in Red Hat Satellite is the ability
+to filter content. This means that you can include or exclude content
+from being installed by your hosts. In this challenge, we’ll block the
+installation of emacs with a filter (since it’s bloatware).
+
+=====
+.Filter content
+[%collapsible]
+====
+Go to the Content Views menu.
+
+.Content View menu
+image::contentview.png[cv]
+
+Click on the `+RHEL10+` content view.
+
+.RHEL 10 Content View
+image::rhel10cv.png[RHEL 10 Content View]
+
+Do the following.
+
+[arabic]
+. Click on the `+Filters+` tab.
+. Click `+Create filter+`.
+
+.Filter tab
+image::filter.png[Filter tab]
+
+Create a filter with the following steps.
+
+[arabic]
+. Name the filter `+emacs+`.
+. Select `+Exclude filter+`.
+. Give the filter a description. We’re going to exclude emacs from being
+included in the `+RHEL9+` content view.
+. Click `+Create filter+`.
+
+.Create filter
+image::createfilter.png[create filter]
+
+Next, click `+Add RPM rule+`.
+
+.emacs filter
+image::emacsrpmrule.png[emacs]
+
+Configure your RPM rule in the following way.
+
+[arabic]
+. Since we’re filtering `+emacs+`, enter `+emacs+`.
+. Select `+All versions+`.
+. Click `+Add rule+`.
+
+.Add rpm rule
+image::addrpmruleemacs.png[add rpm rule]
+
+Click `+Publish new version+` to publish a new version of the `+RHEL9+`
+content view containing our new `+emacs+` filter.
+
+.Publish a new version of the content view containing the new filter
+image::publishcvfilter.png[filter pub]
+
+The new content view will make `+emacs+` unavailable for hosts to
+install.
+
+[arabic]
+. Add a description to the content view version. In this case,
+`+added emacs filter+`.
+. Select `+Promote+`.
+. Select the `+Test+` lifecycle environment.
+. Click `+Next+`.
+
+.Publish the content view filter
+image::publishfiltercv.png[publish]
+
+Ensure the details of this new version are correct and then click
+`+Finish+`. Make sure to wait for the content view to finish publishing
+or else the filter won’t work properly.
+
+WARNING: It can take up to 5 minutes for this particular task to
+complete publishing the content view.
+
+Next, click on either `rhel1.lab terminal` or `rhel2.lab terminal` and run the following command.
+
+[source,bash,run]
+----
+dnf install -y emacs
+----
+
+.Emacs is blocked. lol
+image::emacsinstallerror.png[emacs blocked]
+
+Now all your users will be forced to use vim.

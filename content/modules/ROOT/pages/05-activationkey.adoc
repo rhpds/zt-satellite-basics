@@ -1,0 +1,57 @@
+:imagesdir: ../assets/images
+
+== Create an Activation Key
+
+Activation keys provide a method to automate system registration and
+subscription attachment. You can create multiple keys and associate them
+with different environments and Content Views. For example, you might
+create a basic activation key with a subscription for Red Hat Enterprise
+Linux workstations and associate it with Content Views from a particular
+environment.
+
+You can use activation keys during content host registration to improve
+the speed, simplicity and consistency of the process. Note that
+activation keys are used only when hosts are registered. If changes are
+made to an activation key, it is applicable only to hosts that are
+registered with the amended activation key in the future. The changes
+are not made to existing hosts.
+
+=====
+.Create an activation key
+[%collapsible]
+====
+
+To create an activation key, navigate to the `+Activation Keys+` menu.
+
+.Activation key menu
+image::akmenu.png[../assets/akmenu]
+
+Click on `+Create Activation Key+`.
+
+.Create a new activation key
+image::createak.png[../assets/createak]
+
+We’ll name this activation key (1) `+RHEL10+`, select the (2) `+Test+`
+environment, select the (3) `+RHEL10+` content view and then click (4)
+`+save+`.
+
+For your cut/paste convenience:
+
+[source,js]
+----
+RHEL10
+----
+
+IMPORTANT: The name of the activation key will be used to add hosts. The
+names must match or the hosts will not be registered.
+
+.Activation key creation wizard
+image::akcreation.png[../assets/akcreation]
+
+If you click on `+Repository Sets+`, you’ll notice that this Activation
+Key provides access to the RHEL 10 AppStream and BaseOS repositories. The `Status` of these two repositories shows as `Enabled`.
+This access is provided by configuring the Activation Key to use the
+`+RHEL10+` Content View.
+
+.Activation key repository sets
+image::akrepos.png[akrepos]

@@ -3,22 +3,46 @@ antora:
   name: modules
   dir: www
   modules:
-    - name: "module-01"
-      label: "Overview"
+    - name: "01-introduction"
+      label: "Introduction"
       solveButton: false
-    - name: "module-02"
-      label: "CVEs"
+    - name: "02-syncrepos"
+      label: "Syncrepos"
       solveButton: false
-    - name: "module-03"
-      label: "Malware"
+    - name: "03-lifecycleenv"
+      label: "Lifecycleenv"
       solveButton: false
-    - name: "module-04"
-      label: "Advisor: Satellite"
+    - name: "04-contentview"
+      label: "Contentview"
       solveButton: false
-    - name: "module-05"
-      label: "Lightspeed Advisor in Satellite"
+    - name: "05-activationkey"
+      label: "Activationkey"
       solveButton: false
-    - name: "module-06"
+    - name: "06-configure-host-group"
+      label: "Configure Host Group"
+      solveButton: false
+    - name: "07-registerhost"
+      label: "Registerhost"
+      solveButton: false
+    - name: "08-iop-advisor"
+      label: "Iop Advisor"
+      solveButton: false
+    - name: "09-tracer"
+      label: "Tracer"
+      solveButton: false
+    - name: "10-updateerratum"
+      label: "Updateerratum"
+      solveButton: false
+    - name: "11-apply-system-role"
+      label: "Apply System Role"
+      solveButton: false
+    - name: "12-installsoftware"
+      label: "Installsoftware"
+      solveButton: false
+    - name: "13-filter-software"
+      label: "Filter Software"
+      solveButton: false
+    - name: "14-conclusion"
       label: "Conclusion"
       solveButton: false
 

@@ -1,6 +1,0 @@
-* xref:module-01.adoc[1. Lab Environment Overview]
-* xref:module-02.adoc[2. Red Hat Lightspeed via the Hybrid Cloud Console - Evaluate and remediate CVEs]
-* xref:module-03.adoc[3. Red Hat Lightspeed via the Hybrid Cloud Console - Detect Malware]
-* xref:module-04.adoc[4. Advisor in Satellite while connected]
-* xref:module-05.adoc[5. Advisor in Satellite when using Red Hat Lightspeed on premise]
-* xref:module-06.adoc[6. Recap]

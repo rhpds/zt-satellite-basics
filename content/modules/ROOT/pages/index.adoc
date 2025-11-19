@@ -1,7 +1,0 @@
-= {lab_name}
-
-This lab will show you some of the existing capabilities and services of Red Hat Lightspeed (formerly known as Red Hat Insights) in the Hybrid Cloud Console, then it will provide a hands-on walkthrough installing Red Hat Lightspeed advisor in Satellite, set up with an existing Satellite installation, allowing you to take advantage of recommendations that will improve the security, performance, and availability of your Red Hat Enterprise Linux hosts even if your Satellite is not connected to the internet. This is a brand new option for Red Hat Lightspeed releasing as a Technical Preview at Summit 2025.
-
-NOTE: On November 4, 2025 Red Hat Insights was renamed to Red Hat Lightspeed.  This lab has been updated to reflect this new name.  Be aware that while the name itself has changed, commands, APIs, some URLs, and older materials will still use the Insights name for quite some time.  For more information on this name change, please see this blog: https://www.redhat.com/en/blog/red-hat-insights-now-red-hat-lightspeed[Red Hat Insights is now Red Hat Lightspeed: Accelerating AI-powered management^].
-
-Note: This lab uses pre-release versions of technical preview software and there might be minor variations between what you experience in the lab and what you experience with the technical preview release. We have tried to keep the experience as close to the end release as possible.
