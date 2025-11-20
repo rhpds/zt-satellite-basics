@@ -131,6 +131,13 @@ We’ll now publish a new version of the content view.
 [arabic]
 . Add a description to the new version of the content view. In this
 example we added `+Added the Satellite Client 6 repo.+`.
+
+[source,json]
+----
+Added the Satellite Client 6 repo.
+----
+
+[arabic, start=2]
 . Click `+Promote+`.
 . Click on the `+Test+` lifecycle environment.
 . Click `+Next+`.
