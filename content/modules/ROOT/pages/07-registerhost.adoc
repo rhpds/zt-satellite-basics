@@ -11,10 +11,7 @@ Satellite WebUI but due to the limitations of DNS in this lab
 environment, we’ll use the cli utility `+hammer+` to simplify the
 process.
 
-In our registration command, we’ll specify that the new host should be
-added to the `+Application Servers+` host group we just created. As
-well, we’ll ignore certificate errors (since we’re using a self signed
-certificate) and we will set up Insights.
+In our registration command, we’ll specify that the new host should be added to the `+Application Servers+` host group we just created. As well, we’ll ignore certificate errors (since we’re using a self signed certificate) and we will set up Red Hat Lightspeed (formerly known as Red Hat Red Hat Insights).
 
 == Create a registration script
 
@@ -24,6 +21,8 @@ The following section is for documentation purposes. Please don't run the comman
 .Create a registration script
 [%collapsible]
 ====
+
+WARNING: DO NOT RUN THIS COMMAND. IT IS FOR DOCUMENTATION PURPOSES ONLY.
 
 A registration script can be generated in the CLI with the example `hammer` command below.
 
@@ -67,8 +66,10 @@ ssh -o StrictHostKeyChecking=no root@rhel1 $REGISTRATION_SCRIPT && \
 ssh -o StrictHostKeyChecking=no root@rhel2 $REGISTRATION_SCRIPT
 ----
 
+WARNING: This command might take a few minutes to complete.
+
 This script obtains the global registration script and runs it on
-`+rhel1+` and `+rhel2+` via SSH.
+`+rhel1+` and `+rhel2+` via SSH. The global registration script contains operations to register the hosts to the Satellite server, install specified packages, configure Red Hat Lightspeed (formerly known as Red Hat Insights) and many more. You can find more information about the global registration script in the https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/managing_hosts/registering-hosts-and-setting-up-host-integration_managing-hosts#Registering_Hosts_by_Using_Global_Registration_managing-hosts[Satellite documentation].
 
 In the Satellite Web UI, navigate to `+All Hosts+` to view the newly
 registered hosts.

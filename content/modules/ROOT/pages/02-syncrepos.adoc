@@ -1,16 +1,19 @@
+:imagesdir: ../assets/images
+
 == Synchronize Repositories - FOR DOCUMENTATION PURPOSES ONLY
 
 This section documents the process to synchronize Red Hat Enterprise
 Linux 9 BaseOS and AppStream repositories from the content delivery
-network. ##*Please do not synchronize the repositories*##.
+network. ##*Please do not synchronize the repositories*##. Please feel free to skip to the next assignment.
 
 IMPORTANT: In order to speed up the lab, the RHEL 9 BaseOS and AppStream repos have been pre-synchronized. If you are familiar with this process please feel free to skip to the next assignment. If you decide to run through this procedure, please do not attempt to re-synchronize the repositories.
 
 =====
-.Synchronize repositories
+.Red Hat Repositories
 [%collapsible]
 ====
-== Synchronize repositories
+
+THIS SECTION IS FOR DOCUMENTATION PURPOSES ONLY.
 
 Navigate to the Red Hat Repositories menu by clicking on
 `+Red Hat Repositories+` in the menu context below.
@@ -39,8 +42,15 @@ information, see the Scope of Coverage Details document.
 Content in the AppStream repository includes additional user-space
 applications, runtime languages, and databases in support of the varied
 workloads and use cases.
+====
+=====
 
-== Select repositories
+=====
+.Select repositories
+[%collapsible]
+====
+
+THIS SECTION IS FOR DOCUMENTATION PURPOSES ONLY.
 
 Click on the `+Recommended Repositories+` button to create a more
 succinct view of available repos (the image below displays the button in
@@ -59,7 +69,15 @@ And here’s an animation.
 .Adding repositories
 image::2022-08-11_09-02-27.gif[../assets/2022-08-11_09-02-27]
 
-== Synchronize repositories
+====
+=====
+
+=====
+.Initiate synchronization
+[%collapsible]
+====
+
+THIS SECTION IS FOR DOCUMENTATION PURPOSES ONLY.
 
 Next, we’ll navigate to the `+Products+` menu.
 
@@ -81,3 +99,5 @@ Expand the menu widgets to see a detailed report on the sync status.
 
 .Sync status details
 image::syncstatusdetailed.png[../assets/syncstatusdetailed]
+====
+=====

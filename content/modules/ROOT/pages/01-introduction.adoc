@@ -43,4 +43,4 @@ image::webuilogin.png[../assets/webuilogin]
 You will be taken to the main dashboard.
 
 .Satellite WebGUI dashboard
-image::main-menu.png[../assets/main-menu]
+image::dashboard.png[../assets/dashboard]

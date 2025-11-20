@@ -1,6 +1,6 @@
 :imagesdir: ../assets/images
 
-== Red Hat Lightspeed for Satellite
+== Red Hat Lightspeed for Satellite (formerly known as Red Hat Insights)
 
 Red Hat Lightspeed services for disconnected/air gapped Satellite environments are now available and includes the following services:
 
@@ -9,11 +9,12 @@ Red Hat Lightspeed services for disconnected/air gapped Satellite environments a
 
 Red Hat Lightspeed advisor is a service that analyzes your systems and recommends actions to improve your security and performance. Red Hat Lightspeed vulnerability service is a service that tracks vulnerabilities and recommends actions to improve your security.
 
-The Satellite server in this lab is disconnected from the internet. We'll review the advisor service in this lab. There is an option section at the end of this lab to review the vulnerability service. The vulnerability service is in technology preview in Satellite 6.18.
+The Satellite server in this lab is disconnected from the internet. You'll review the advisor service in this lab. There is an optional section at the end of this lab to review the vulnerability service. The vulnerability service is in technology preview in Satellite 6.18.
 
-== Review Lightspeed advisor recommendations
-
-Red Hat Lightspeed Advisor continuously analyzes platforms and applications to predict risk, recommend actions, and track costs so enterprises can better manage hybrid cloud environments.
+=====
+.Review Lightspeed advisor recommendations
+[%collapsible]
+====
 
 Advisor analyzes Red Hat Enterprise Linux systems for configuration problems that could degrade performance or render your system less secure. Red Hat Satellite provides access to the Red Hat Lightspeed Advisor service in a connected and disconnected network topology. Let's review how to use advisor in a disconnected environment to analyze problems and remediate them automatically.
 
@@ -25,12 +26,12 @@ image::insights-recommendations.png[../assets/insights-recommendations]
 In this menu we can see all the advisor `+Recommendations+` for
 each host.
 
-Click on a recommendation with a `+Playbook+` remediation type. In this example we'll review the recommendation for `Decreased security: OpenSSH ClientAlive settings`.
+Click on a recommendation with a `+Playbook+` remediation type. In this example you'll review the recommendation for `Decreased security: OpenSSH ClientAlive settings`. Click on the recommendation to view the details.
 
 .Advisor recommendations
 image::recommendations_main_page.png[../assets/recommendations_main_page]
 
-In this example, we'll review the recommendation for `Decreased security: OpenSSH ClientAlive settings`.
+In this example, you'll review the recommendation for `Decreased security: OpenSSH ClientAlive settings`.
 
 .Decreased security: OpenSSH ClientAlive settings
 image::decreased_security.png[../assets/decreased_security]
@@ -39,7 +40,13 @@ The recommendation details page provides a summary of the recommendation, includ
 
 This particular advisory can be remediated with an ansible playbook.
 
-== Automatically remediate the hosts
+====
+=====
+
+=====
+.Automatically apply advisor recommendations to the hosts
+[%collapsible]
+====
 
 Let’s remediate all the problems found by advisor.
 
@@ -54,14 +61,22 @@ Review all the remediations and click `+Remediate+`.
 .Review resolutions
 image::review-all-remediate.png[../assets/review-all-remediate]
 
-When all remediations have been applied, proceed to the next assignment.
+When all remediations have been applied, proceed to the next section by clicking the `+Next+` button at the bottom of the page. You can complete the optional vulnerability service section if you wish.
 
 .Remediation job details
 image::successfully-remediated.png[../assets/successfully-remediated]
 
-== Optional: Vulnerability service ==
+====
+=====
+
+=====
+.Optional: Vulnerability service
+[%collapsible]
+====
 
 The Vulnerability Service powered by Red Hat Lightspeed is the primary method for tracking security issues involving viewing and triaging CVEs (Common Vulnerabilities and Exposures).
+
+NOTE: The vulnerability service is in technology preview in Satellite 6.18.
 
 The system displays detailed information about CVEs, including the CVE ID, description, publish date, severity, and CVSS score.
 
@@ -77,4 +92,7 @@ When you click on a CVE, you will be taken to the CVE details page. Here you can
 .CVE details
 image::cve-details.png[../assets/cve-details]
 
-Later in this lab, we'll remediate this CVE through the errata update process.
+Later in this lab, you'll remediate this CVE through the errata update process.
+
+====
+=====

@@ -8,13 +8,13 @@ Collection.
 A host collection is a group of content hosts. This feature enables you
 to perform the same action on multiple hosts at once. These actions can
 include the installation, removal, and update of packages and errata,
-change of assigned life cycle environment, and change of Content View.
+change of assigned lifecycle environment, and change of Content View.
 You can create host collections to suit your requirements, and those of
 your company. For example, group hosts in host collections by function,
 department, or business unit.
 
 For more information on Host Collections, please see
-https://access.redhat.com/documentation/en-us/red_hat_satellite/6.15/html/managing_hosts/configuring_host_collections_managing-hosts[Configuring
+https://access.redhat.com/documentation/en-us/red_hat_satellite/6.18/html/managing_hosts/configuring_host_collections_managing-hosts[Configuring
 Host Collections].
 
 == Create a host collection
@@ -74,7 +74,7 @@ image::clickontmuxinstallation.png[../assets/clickontmuxinstallation]
 
 == Install software with the host collection
 
-Now we'll install software using the host collection.
+Now you'll install software using the host collection.
 
 =====
 .Install software with the host collection

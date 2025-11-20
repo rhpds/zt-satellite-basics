@@ -1,18 +1,19 @@
+:imagesdir: ../assets/images
 == Create a Lifecycle environment
 
-The application life cycle is a concept central to Red Hat Satellite 6’s
-content management functions. The application life cycle defines how a
+The application lifecycle is a concept central to Red Hat Satellite 6’s
+content management functions. The application lifecycle defines how a
 particular system and its software look at a particular stage. For
-example, an application life cycle might be simple; you might only have
+example, an application lifecycle might be simple; you might only have
 a development stage and production stage. In this case the application
-life cycle might look like this:
+lifecycle might look like this:
 
 * Development
 * Production
 
-However, a more complex application life cycle might have further
+However, a more complex application lifecycle might have further
 stages, such as a phase for testing or a beta release. This adds extra
-stages to the application life cycle:
+stages to the application lifecycle:
 
 * Development
 * Testing
@@ -20,7 +21,7 @@ stages to the application life cycle:
 * Production
 
 To find out more about lifecycle environments, please refer to
-https://access.redhat.com/documentation/fr-fr/red_hat_satellite/6.15/html/managing_content/managing_application_lifecycles_content-management[Satellite
+https://access.redhat.com/documentation/fr-fr/red_hat_satellite/6.18/html/managing_content/managing_application_lifecycles_content-management[Satellite
 documentation].
 
 =====
@@ -37,8 +38,16 @@ Click on `+Create Environment Path+`.
 .Create environment path
 image::createenvironment.png[../assets/createenvironment]
 
-Create a new environment. We’ll call this one `+Test+`. Then click
-`+save+` to save it.
+Create a new environment.
+
+. We’ll call this environment `+Test+`.
+[source,js]
+----
+Test
+----
+
+[arabic, start=2]
+. Click `+Save+` to save it.
 
 .New environment menu
 image::newenvironment.png[../assets/newenvironment]

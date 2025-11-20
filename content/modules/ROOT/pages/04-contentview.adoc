@@ -16,7 +16,7 @@ regard for Test, Production lifecycle use cases.
 
 To learn more about Content Views and how to use them to manage content
 for different lifecycle environments, please see
-https://access.redhat.com/documentation/en-us/red_hat_satellite/6.15/html/managing_content/managing_content_views_content-management[Managing
+https://access.redhat.com/documentation/en-us/red_hat_satellite/6.18/html/managing_content/managing_content_views_content-management[Managing
 Content Views] in Satellite documentation.
 
 =====
@@ -34,14 +34,15 @@ Click on `+Create content view+`.
 .Create a new content view
 image::createcontentview.png[../assets/createcontentview]
 
-We’ll name this content view `+RHEL10+`:
+. We’ll name this content view `+RHEL10+`:
 
 [source,js]
 ----
 RHEL10
 ----
 
-Click `+Create content view+` to save it.
+[arabic, start=2]
+. Click `+Create content view+` to save it.
 
 IMPORTANT: Please ensure that you type `+RHEL10+` in capital letters. We’ll
 need this value in step 6 of this lab.
@@ -55,22 +56,22 @@ Click on `+Show repositories+`.
 .Show repos
 image::showrepos.png[show repos]
 
-Add the `+Red Hat Enterprise Linux 10 BaseOS+` and
-`+Red Hat Enterprise Linux 10 AppStream+` repos. Click
-`+Add Repositories+`.
+You'll add repositories to the content view using the following steps:
+
+. Add the `+Red Hat Enterprise Linux 10 BaseOS+` and
+`+Red Hat Enterprise Linux 10 AppStream+` repos.
+. Click `+Add Repositories+` to add the repositories.
 
 .Add repos
-image::addrepos.png[]
+image::addrepos.png[../assets/addrepos]
 
-Click `+Publish New Version+`.
+[arabic, start=3]
+. Click `+Publish New Version+` to publish the content view.
 
 .Publish a new version of the content view
 image::publish.png[../assets/publish]
 
-Next we’ll complete the following steps to publish and promote the
-content view.
-
-[arabic]
+[arabic, start=4]
 . Click the sliding `+Promote+` button.
 . Select the lifecycle environment you wish to promote the content view
 to. In this case it is `+Test+`.
