@@ -18,7 +18,7 @@ In our registration command, we’ll specify that the new host should be added t
 The following section is for documentation purposes. Please don't run the commands.
 
 =====
-.Create a registration script
+.Create a registration script - DOCUMENTATION PURPOSES ONLY
 [%collapsible]
 ====
 
