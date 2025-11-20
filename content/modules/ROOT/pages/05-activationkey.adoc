@@ -32,6 +32,7 @@ Click on `+Create Activation Key+`.
 image::createak.png[../assets/createak]
 
 . We’ll name this activation key `+RHEL10+`
+
 [source,json]
 ----
 RHEL10
