@@ -54,3 +54,4 @@
 # chmod 700 /usr/local/sbin/wg-startup.sh
 # restorecon -Fvvv /usr/local/sbin/wg-startup.sh
 # systemctl enable wg-startup
+dnf remove -y tmux
