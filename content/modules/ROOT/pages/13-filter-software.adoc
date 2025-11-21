@@ -75,16 +75,16 @@ emacs
 . Select `+All versions+`.
 . Click `+Add rule+`.
 
-====
-=====
-
-=====
-.Add rpm rule
-[%collapsible]
-====
-
 .Add rpm rule
 image::addrpmruleemacs.png[add rpm rule]
+
+====
+=====
+
+=====
+.Publish a new version of the content view containing the new filter
+[%collapsible]
+====
 
 Click `+Publish new version+` to publish a new version of the `+RHEL9+`
 content view containing our new `+emacs+` filter.

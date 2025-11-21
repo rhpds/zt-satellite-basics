@@ -98,7 +98,7 @@ reboot.
 When you view the `+Traces+` menu, the list will be empty signifying no
 services require restart.
 
-You can check on the status of the job by typing `+jobs+` button and then on the `+Resolve traces+` job.
+You can check on the status of the job by clicking the `+jobs+` button and then on the `+Resolve traces+` job.
 
 .Job status
 image::traces-job-status.png[traces job status]

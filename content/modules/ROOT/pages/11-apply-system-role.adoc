@@ -30,6 +30,7 @@ Next we’ll do the following.
 .Down arrow
 image::downarrow.png[down arrow]
 
+[arabic, start=3]
 . Select `+Run Ansible roles+`.
 
 
