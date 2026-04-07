@@ -42,7 +42,10 @@ antora:
     - name: "13-filter-software"
       label: "Filter Software"
       solveButton: false
-    - name: "14-conclusion"
+    - name: "14-satellite-ai-integration"
+      label: "Satellite AI Integration"
+      solveButton: false
+    - name: "15-conclusion"
       label: "Conclusion"
       solveButton: false
 
@@ -55,3 +58,7 @@ tabs:
     url: /wetty_rhel1/ssh/root
   - name: "rhel2.lab terminal"
     url: /wetty_rhel2/ssh/root
+  - name: "rhel3.lab terminal"
+    url: /wetty_rhel3/ssh/root
+  - name: "rhel-ai.lab terminal"
+    url: /wetty_rhel-ai/ssh/root

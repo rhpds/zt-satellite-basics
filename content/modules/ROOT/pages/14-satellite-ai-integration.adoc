@@ -1,0 +1,30 @@
+:imagesdir: ../assets/images
+
+== Satellite AI Integration
+
+Red Hat Satellite can integrate with AI-powered tools to enhance
+infrastructure management. In this module, we'll explore how Satellite
+AI integration can help streamline operations, provide intelligent
+recommendations, and improve decision-making for system administrators.
+
+=== Benefits of Satellite AI Integration
+
+Satellite integrates with Large Language Models (LLMs) to provide intelligent insights and recommendations for system management. This integration is enabled through the Model Context Protocol (MCP). Red Hat Satellite is shipped with an MCP server that can be configured as an interface for LLMs, providing access to the Satellite API. This allows LLMs to interact with Satellite's data and functionality, enabling them to generate context-aware responses and recommendations based on the current state of the infrastructure.
+
+The integration of the Model Context Protocol (MCP) and AI in Red Hat Satellite provides significant value by augmenting human expertise with AI-driven automation.
+
+For System Administrators: It enables conversational management by allowing admins to use natural language queries via a Large Language Model (LLM) to interface securely with Satellite's API. Admins can ask the AI to browse the Satellite inventory, categorize reports, and trigger remote execution jobs for patching.
+
+For IT Decision Makers: It maximizes team productivity, especially in tight labor markets, by helping to bridge the technical skills gap. AI-assisted workflows allow junior staff to handle routine maintenance and patching, organizations can free up their senior talent to focus on high-value architecture and innovation projects
+
+=====
+`opencode` Configuration
+[%collapsible]
+====
+
+The `rhel-ai.lab` system is pre-installed with `opencode` client. `opencode` is a tui based command line tool that allows users to interact with the MCP server and LLMs. Let's configure the LLM and the MCP server.
+
+
+====
+=====
+

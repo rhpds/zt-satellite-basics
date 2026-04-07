@@ -1,4 +1,11 @@
 ---
+litemaas:
+  models:
+    - minimax-m2
+  duration: 1d
+  enable_user_info_messages: true
+  enable_user_info_data: true
+
 virtualmachines:
   - name: "satellite"
     image: "satellite-server-rhdp-1-6-18-10-11-25"
@@ -106,5 +113,41 @@ virtualmachines:
       #cloud-config
       fqdn: rhel2.lab
       hostname: rhel2
+      prefer_fqdn_over_hostname: true
+      manage_etc_hosts: true
+  - name: "rhel3"
+    image: "rhel-10-1-11-13-25"
+    bootloader: efi
+    register_satellite: false
+    memory: "4G"
+    cores: 1
+    image_size: "40G"
+    tags:
+      - key: "AnsibleGroup"
+        value: "nodes"
+    networks:
+      - default
+    userdata: |
+      #cloud-config
+      fqdn: rhel3.lab
+      hostname: rhel3
+      prefer_fqdn_over_hostname: true
+      manage_etc_hosts: true
+  - name: "rhel-ai"
+    image: "rhel-10-1-04-01-26-ai"
+    bootloader: efi
+    register_satellite: false
+    memory: "4G"
+    cores: 1
+    image_size: "40G"
+    tags:
+      - key: "AnsibleGroup"
+        value: "nodes"
+    networks:
+      - default
+    userdata: |
+      #cloud-config
+      fqdn: rhel-ai.lab
+      hostname: rhel-ai
       prefer_fqdn_over_hostname: true
       manage_etc_hosts: true
