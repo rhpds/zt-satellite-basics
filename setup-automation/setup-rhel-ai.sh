@@ -15,7 +15,7 @@ cat > /root/.config/opencode/config.json << EOF
       "npm": "@ai-sdk/openai-compatible",
       "name": "LiteLLM",
       "options": {
-        "baseURL": "$LITELLM_API_BASE_URL"
+        "baseURL": "$LITELLM_API_URL"
       },
       "models": {
         "minimax-m2": {
