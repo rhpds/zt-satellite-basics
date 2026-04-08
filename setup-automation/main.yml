@@ -67,6 +67,11 @@
       when: r_script_test.stat.exists
       ansible.builtin.shell: "sh -x /tmp/setup-scripts/setup-{{ ansible_host }}.sh > /tmp/setup-scripts/setup-{{ ansible_host }}.log 2>&1"
       become: true
+      environment:
+        GUID: "{{ _showroom_env_guid }}"
+        DOMAIN: "{{ _showroom_env_domain }}"
+        LITELLM_API_URL: "{{ _showroom_env_litellm_url }}"
+        LITELLM_API_KEY: "{{ _showroom_env_litellm_key }}"
       register: r_result
 
     - name: Output script result
