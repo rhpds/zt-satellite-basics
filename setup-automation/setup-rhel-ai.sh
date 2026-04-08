@@ -11,7 +11,7 @@ echo $LITELLM_API_KEY >> /tmp/LITELLM_API_KEY
 
 # Persist OpenCode LiteLLM configuration: write config.json with the Litellm provider configuration (heredoc unquoted so the variable is substituted).
 mkdir -p /root/.config/opencode/
-cat > /root/.config/opencode/config.json << 'EOF'
+cat > /root/.config/opencode/config.json << EOF
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
