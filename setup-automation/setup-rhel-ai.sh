@@ -7,12 +7,7 @@ echo "starting setup-rhel-ai.sh" >> /tmp/setup-scripts/setup-rhel-ai.log
 echo "LITELLM_API_KEY: $LITELLM_API_KEY" >> /tmp/setup-scripts/setup-rhel-ai.log
 echo $LITELLM_API_KEY >> /tmp/LITELLM_API_KEY
 
-cat > /home/rhel/runtime-env-check.txt << EOF
-GUID=${GUID}
-DOMAIN=${DOMAIN}
-LITELLM_API_URL=${LITELLM_API_URL}
-LITELLM_API_KEY=${LITELLM_API_KEY}
-EOF
+
 
 # Persist OpenCode LiteLLM configuration: write config.json with the Litellm provider configuration (heredoc unquoted so the variable is substituted).
 mkdir -p /root/.config/opencode/
@@ -24,7 +19,7 @@ cat > /root/.config/opencode/config.json << 'EOF'
       "npm": "@ai-sdk/openai-compatible",
       "name": "LiteLLM",
       "options": {
-        "baseURL": "https://litellm-prod.apps.maas.redhatworkshops.io/v1"
+        "baseURL": "$LITELLM_API_BASE_URL"
       },
       "models": {
         "minimax-m2": {
@@ -40,7 +35,7 @@ cat > /root/.config/opencode/config.json << 'EOF'
       "enabled": true,
       "headers": {
         "FOREMAN_USERNAME": "admin",
-        "FOREMAN_TOKEN": ""
+        "FOREMAN_TOKEN": "$FOREMAN_TOKEN"
       }
     }
   }
