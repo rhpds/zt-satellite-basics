@@ -48,3 +48,6 @@ cat > /root/.local/share/opencode/auth.json << EOF
   }
 }
 EOF
+
+# Download the Foreman raw CA certificate and save it to /root/foreman_raw_ca (using -k to ignore SSL issues since it's a self-signed cert, and using the internal Satellite FQDN).
+curl -k -o /root/foreman_raw_ca https://satellite.lab/unattended/public/foreman_raw_ca
