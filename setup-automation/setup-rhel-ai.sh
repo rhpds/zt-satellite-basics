@@ -9,7 +9,7 @@ export FOREMAN_TOKEN=$(ssh satellite.lab 'hammer user access-token create --user
 mkdir -p /root/.config/opencode/
 cat > /root/.config/opencode/config.json << EOF
 {
-  "$schema": "https://opencode.ai/config.json",
+  "\$schema": "https://opencode.ai/config.json",
   "provider": {
     "litellm": {
       "npm": "@ai-sdk/openai-compatible",
