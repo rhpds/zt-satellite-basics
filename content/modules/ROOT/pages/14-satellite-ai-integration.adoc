@@ -18,13 +18,91 @@ For System Administrators: It enables conversational management by allowing admi
 For IT Decision Makers: It maximizes team productivity, especially in tight labor markets, by helping to bridge the technical skills gap. AI-assisted workflows allow junior staff to handle routine maintenance and patching, organizations can free up their senior talent to focus on high-value architecture and innovation projects
 
 =====
-`opencode` Configuration
+`opencode`
 [%collapsible]
 ====
 
-The `rhel-ai.lab` system is pre-installed with `opencode` client. `opencode` is a tui based command line tool that allows users to interact with the MCP server and LLMs. Let's configure the LLM and the MCP server.
+The `rhel-ai.lab` system is pre-installed with `opencode` client. `opencode` is a tui based command line tool that allows users to interact with the MCP server and LLMs.
 
+This lab is configured to use the `minimax-m2` model, which is a powerful LLM that can provide intelligent insights and recommendations based on the data it receives from the Satellite MCP server.
+
+First, click on the `rhel-ai.lab` terminal.
+.rhel-ai.lab terminal
+image::rhelaitab.png[]
+
+Click on the run button to run the following command to start `opencode`:
+[source,bash,run]
+----
+opencode
+----
+
+[NOTE]
+--
+Opencode has a bug which emits spurious error messages upon launch. The messages can be removed with the following procedure.
+
+.opencode bug
+image::opencodebug.png[]
+
+. Type ctrl+p.
+
+. Type escape key.
+
+This will open the opencode options menu. When you exit the menu, the error messages will be cleared.
+--
 
 ====
 =====
 
+=====
+Ask a question about the Satellite inventory
+[%collapsible]
+====
+In the `opencode` prompt, ask the following question about the Satellite inventory:
+
+[source,js]
+----
+What is the total number of hosts in the Satellite inventory?
+----
+
+The output will look similar to the image below.
+
+.Satellite inventory question and answer
+image::totalnumberhostssatelliteinventory.png[]
+
+In the output, we can see that the LLM was able to query the Satellite MCP server and retrieve the total number of hosts in the Satellite inventory, which is 3 in this case.
+
+====
+=====
+
+=====
+Find out which hosts have pending errata
+[%collapsible]
+====
+In the `opencode` prompt, ask the following question to find out which hosts have pending errata:
+[source,js]
+----
+Which hosts in the Satellite inventory have pending errata?
+----
+
+The output will look similar to the image below.
+
+.Hosts with pending errata
+image::systemswitherrata.png[]
+
+=====
+
+=====
+Trigger a remote execution job for patching
+[%collapsible]
+====
+In the `opencode` prompt, ask the following question to trigger a remote execution job for patching:
+[source,js]
+----
+Can you trigger a remote execution job to patch all the hosts in the inventory except satellite.lab? Make sure to explicitly mention the individual CVEs.
+----
+
+.Host patching remote execution job
+image::appliederrata.png[]
+
+====
+=====
