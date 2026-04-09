@@ -33,6 +33,11 @@ cat > /root/.config/opencode/config.json << EOF
         "FOREMAN_USERNAME": "admin",
         "FOREMAN_TOKEN": "$FOREMAN_TOKEN"
       }
+    },
+    "rhel-mcp": {
+      "type": "local",
+      "enabled": true,
+      "command": ["/usr/local/bin/linux-mcp-server","--no-verify-host-keys"]
     }
   }
 }
