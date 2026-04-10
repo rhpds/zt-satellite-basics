@@ -116,7 +116,7 @@ virtualmachines:
       prefer_fqdn_over_hostname: true
       manage_etc_hosts: true
   - name: "rhel-ai"
-    image: "rhel-10-1-04-01-26-ai"
+    image: "rhel-10-1-04-09-26-ai"
     bootloader: efi
     register_satellite: false
     memory: "4G"
