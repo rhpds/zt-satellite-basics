@@ -21,6 +21,7 @@
       loop:
         - rhel1
         - rhel2
+        - rhel3
         - rhel-ai
 
 - name: Demo Playbook for the ansible-runner API
