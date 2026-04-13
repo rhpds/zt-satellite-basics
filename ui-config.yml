@@ -55,3 +55,5 @@ tabs:
     url: /wetty_rhel1/ssh/root
   - name: "rhel2.lab terminal"
     url: /wetty_rhel2/ssh/root
+  - name: "rhel-ai.lab terminal"
+    url: /wetty_rhel-ai/ssh/root
