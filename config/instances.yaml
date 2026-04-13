@@ -146,4 +146,4 @@ virtualmachines:
         service: opencode
         targetPort: 9999
         tls: true
-        tls_termination: reencrypt
+        tls_termination: edge
