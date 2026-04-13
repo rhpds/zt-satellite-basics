@@ -142,6 +142,8 @@ virtualmachines:
             name: opencode
     routes:
       - name: opencode
-        host: rhel-ai.lab
+        host: opencode
         service: opencode
         targetPort: 9999
+        tls: true
+        tls_termination: edge
