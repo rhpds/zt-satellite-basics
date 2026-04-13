@@ -11,7 +11,7 @@ egress:
 ingress:
   - ports:
       - protocol: TCP
-        port: 9090
+        port: 9999
   - from:
       - podSelector:
           matchLabels:
