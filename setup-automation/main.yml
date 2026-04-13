@@ -31,11 +31,6 @@
     _showroom_env_domain: "{{ lookup('ansible.builtin.env', 'DOMAIN') | default('') }}"
     _showroom_env_litellm_url: "{{ lookup('ansible.builtin.env', 'LITELLM_API_URL') | default('') }}"
     _showroom_env_litellm_key: "{{ lookup('ansible.builtin.env', 'LITELLM_API_KEY') | default('') }}"
-  vars:
-    _showroom_env_guid: "{{ lookup('ansible.builtin.env', 'GUID') | default('') }}"
-    _showroom_env_domain: "{{ lookup('ansible.builtin.env', 'DOMAIN') | default('') }}"
-    _showroom_env_litellm_url: "{{ lookup('ansible.builtin.env', 'LITELLM_API_URL') | default('') }}"
-    _showroom_env_litellm_key: "{{ lookup('ansible.builtin.env', 'LITELLM_API_KEY') | default('') }}"
   tasks:
     - ansible.builtin.wait_for_connection:
 

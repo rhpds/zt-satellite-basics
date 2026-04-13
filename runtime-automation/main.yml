@@ -32,15 +32,11 @@
     _showroom_env_domain: "{{ lookup('ansible.builtin.env', 'DOMAIN') | default('') }}"
     _showroom_env_litellm_url: "{{ lookup('ansible.builtin.env', 'LITELLM_API_URL') | default('') }}"
     _showroom_env_litellm_key: "{{ lookup('ansible.builtin.env', 'LITELLM_API_KEY') | default('') }}"
-  vars:
-    _showroom_env_guid: "{{ lookup('ansible.builtin.env', 'GUID') | default('') }}"
-    _showroom_env_domain: "{{ lookup('ansible.builtin.env', 'DOMAIN') | default('') }}"
-    _showroom_env_litellm_url: "{{ lookup('ansible.builtin.env', 'LITELLM_API_URL') | default('') }}"
-    _showroom_env_litellm_key: "{{ lookup('ansible.builtin.env', 'LITELLM_API_KEY') | default('') }}"
   tasks:
     - name: Simple debug task
       ansible.builtin.debug:
         msg: "Hello Runner"
+
     - name: Simple debug task
       ansible.builtin.debug:
         msg: "Hello Runner"
@@ -54,6 +50,7 @@
         path: "/tmp/runtime-scripts/{{ module_dir }}"
         state: directory
         mode: '0755'
+
     - name: Create a directory if it does not exist
       ansible.builtin.file:
         path: "/tmp/runtime-scripts/{{ module_dir }}"
@@ -65,6 +62,7 @@
         path: "./{{ module_dir }}/{{ module_stage }}-{{ config_host }}.sh"
       delegate_to: localhost
       register: r_script_test
+
     - name: Check if /module_dir/module_stage-host.sh exists
       ansible.builtin.stat:
         path: "./{{ module_dir }}/{{ module_stage }}-{{ config_host }}.sh"
@@ -95,6 +93,7 @@
       ansible.builtin.debug:
         msg: "{{ r_result.stdout | default('') }}"
       when: r_script_test.stat.exists
+
     - name: Output script result
       ansible.builtin.debug:
         msg: "{{ r_result.stdout | default('') }}"
@@ -106,6 +105,7 @@
         dest: "{{ job_info_dir }}/script.out"
       delegate_to: localhost
       when: r_script_test.stat.exists and job_info_dir is defined
+
     - name: Write script result to file
       ansible.builtin.copy:
         content: "{{ r_result.stdout | default('') }}"
@@ -117,6 +117,7 @@
       ansible.builtin.debug:
         var: r_result
       when: r_script_test.stat.exists and job_info_dir is defined
+
     - name: Output script result
       ansible.builtin.debug:
         var: r_result
@@ -126,6 +127,7 @@
       ansible.builtin.fail:
         msg: "Stage failed"
       when: r_script_test.stat.exists and r_result.rc != 0
+      
     - name: Fail if stage was failed
       ansible.builtin.fail:
         msg: "Stage failed"
