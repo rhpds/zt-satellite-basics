@@ -23,18 +23,10 @@
       - rhel1
       - rhel2
       - rhel-ai
-      
 - name: Demo Playbook for the ansible-runner API
   hosts: all:!localhost
   gather_facts: false
-  vars:
-    _showroom_env_guid: "{{ lookup('ansible.builtin.env', 'GUID') | default('') }}"
-    _showroom_env_domain: "{{ lookup('ansible.builtin.env', 'DOMAIN') | default('') }}"
-    _showroom_env_litellm_url: "{{ lookup('ansible.builtin.env', 'LITELLM_API_URL') | default('') }}"
-    _showroom_env_litellm_key: "{{ lookup('ansible.builtin.env', 'LITELLM_API_KEY') | default('') }}"
   tasks:
-    - name: Wait for connection
-      ansible.builtin.wait_for_connection:
 
   - ansible.builtin.wait_for_connection:
   - name: Simple debug task
