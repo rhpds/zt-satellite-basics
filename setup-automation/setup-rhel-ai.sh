@@ -81,4 +81,4 @@ systemctl daemon-reload
 systemctl start satellite-mcp.service
 
 # Start OpenCode web interface on port 9999 in the background, redirecting output to the log file.
-opencode web --port 9999 &
+/root/.opencode/bin/opencode web --port 9999 &
