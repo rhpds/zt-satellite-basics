@@ -27,6 +27,7 @@ The `rhel-ai.lab` system is pre-installed with `opencode` client. `opencode` is 
 This lab is configured to use the `minimax-m2` model, which is a powerful LLM that can provide intelligent insights and recommendations based on the data it receives from the Satellite MCP server.
 
 First, click on the `rhel-ai.lab` terminal.
+
 .rhel-ai.lab terminal
 image::rhelaitab.png[]
 
