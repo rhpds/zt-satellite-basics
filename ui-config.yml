@@ -60,3 +60,6 @@ tabs:
     url: /wetty_rhel2/ssh/root
   - name: "rhel-ai.lab terminal"
     url: /wetty_rhel-ai/ssh/root
+  - name: "rhel-ai.lab Web GUI"
+    url: http://rhel-ai-${guid}.${domain}:9999/
+  

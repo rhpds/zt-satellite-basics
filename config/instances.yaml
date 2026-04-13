@@ -133,3 +133,15 @@ virtualmachines:
       hostname: rhel-ai
       prefer_fqdn_over_hostname: true
       manage_etc_hosts: true
+    services:
+      - name: opencode
+        ports:
+          - port: 9999
+            protocol: TCP
+            targetPort: 9999
+            name: opencode
+    routes:
+      - name: opencode
+        host: rhel-ai.lab
+        service: opencode
+        targetPort: 9999
