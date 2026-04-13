@@ -57,16 +57,25 @@ EOF
 # Download the Foreman raw CA certificate and save it to /root/foreman_raw_ca (using -k to ignore SSL issues since it's a self-signed cert, and using the internal Satellite FQDN).
 curl -k -o /root/foreman_raw_ca https://satellite.lab/unattended/public/foreman_raw_ca
 
-# Create and start the satellite-mcp container, then generate a systemd service for it.
-podman create --name satellite-mcp \
-  --publish 8080:8080 \
-  --volume /root/foreman_raw_ca:/app/ca.pem:ro,Z \
-  docker.io/library/test:test \
-  --foreman-url https://satellite.lab \
-  --allowed-rex-features "katello_errata_install,katello_package_install" \
-  --allowed-cv-actions "publish,promote,incremental_update"
+# Write quadlet container unit file and start the satellite-mcp container.
+mkdir -p /etc/containers/systemd/
+cat > /etc/containers/systemd/satellite-mcp.container << 'EOF'
+[Unit]
+Description=Satellite MCP Container
 
-podman generate systemd --new --name satellite-mcp > /etc/systemd/system/container-satellite-mcp.service
+[Container]
+ContainerName=satellite-mcp
+Image=docker.io/library/test:test
+PublishPort=8080:8080
+Volume=/root/foreman_raw_ca:/app/ca.pem:ro,Z
+Exec=--foreman-url https://satellite.lab --allowed-rex-features "katello_errata_install,katello_package_install" --allowed-cv-actions "publish,promote,incremental_update"
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target default.target
+EOF
+
 systemctl daemon-reload
-systemctl enable --now container-satellite-mcp.service
-
+systemctl start satellite-mcp.service

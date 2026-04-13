@@ -3,26 +3,25 @@
   hosts: localhost
   gather_facts: false
   tasks:
-    - name: Add bastion host
-      ansible.builtin.add_host:
-        name: "{{ lookup('ansible.builtin.env', 'BASTION_HOST') }}"
-        ansible_ssh_host: "{{ lookup('ansible.builtin.env', 'BASTION_HOST') }}"
-        ansible_ssh_port: "{{ lookup('ansible.builtin.env', 'BASTION_PORT') }}"
-        ansible_ssh_user: "{{ lookup('ansible.builtin.env', 'BASTION_USER') }}"
-        ansible_ssh_pass: "{{ lookup('ansible.builtin.env', 'BASTION_PASSWORD') }}"
-    - name: Add nodes
-      ansible.builtin.add_host:
-        name: "{{ item }}"
-        ansible_ssh_host: "{{ item }}"
-        ansible_ssh_port: "{{ lookup('ansible.builtin.env', 'BASTION_PORT') }}"
-        ansible_ssh_user: "{{ lookup('ansible.builtin.env', 'BASTION_USER') }}"
-        ansible_ssh_pass: "{{ lookup('ansible.builtin.env', 'BASTION_PASSWORD') }}"
-        ansible_python_interpreter: /usr/libexec/platform-python
-      loop:
-        - rhel1
-        - rhel2
-        - rhel3
-        - rhel-ai
+  - name: Add bastion host
+    ansible.builtin.add_host:
+      name: "{{ lookup('ansible.builtin.env', 'BASTION_HOST') }}"
+      ansible_ssh_host: "{{ lookup('ansible.builtin.env', 'BASTION_HOST') }}"
+      ansible_ssh_port: "{{ lookup('ansible.builtin.env', 'BASTION_PORT') }}"
+      ansible_ssh_user: "{{ lookup('ansible.builtin.env', 'BASTION_USER') }}"
+      ansible_ssh_pass: "{{ lookup('ansible.builtin.env', 'BASTION_PASSWORD') }}"
+  - name: Add nodes
+    ansible.builtin.add_host:
+      name: "{{ item }}"
+      ansible_ssh_host: "{{ item }}"
+      ansible_ssh_port: "{{ lookup('ansible.builtin.env', 'BASTION_PORT') }}"
+      ansible_ssh_user: "{{ lookup('ansible.builtin.env', 'BASTION_USER') }}"
+      ansible_ssh_pass: "{{ lookup('ansible.builtin.env', 'BASTION_PASSWORD') }}"
+      ansible_python_interpreter: /usr/libexec/platform-python
+    loop:
+      - rhel1
+      - rhel2
+      - rhel-ai
 
 - name: Demo Playbook for the ansible-runner API
   hosts: all:!localhost
@@ -33,7 +32,15 @@
     _showroom_env_domain: "{{ lookup('ansible.builtin.env', 'DOMAIN') | default('') }}"
     _showroom_env_litellm_url: "{{ lookup('ansible.builtin.env', 'LITELLM_API_URL') | default('') }}"
     _showroom_env_litellm_key: "{{ lookup('ansible.builtin.env', 'LITELLM_API_KEY') | default('') }}"
+  vars:
+    _showroom_env_guid: "{{ lookup('ansible.builtin.env', 'GUID') | default('') }}"
+    _showroom_env_domain: "{{ lookup('ansible.builtin.env', 'DOMAIN') | default('') }}"
+    _showroom_env_litellm_url: "{{ lookup('ansible.builtin.env', 'LITELLM_API_URL') | default('') }}"
+    _showroom_env_litellm_key: "{{ lookup('ansible.builtin.env', 'LITELLM_API_KEY') | default('') }}"
   tasks:
+    - name: Simple debug task
+      ansible.builtin.debug:
+        msg: "Hello Runner"
     - name: Simple debug task
       ansible.builtin.debug:
         msg: "Hello Runner"
@@ -47,7 +54,17 @@
         path: "/tmp/runtime-scripts/{{ module_dir }}"
         state: directory
         mode: '0755'
+    - name: Create a directory if it does not exist
+      ansible.builtin.file:
+        path: "/tmp/runtime-scripts/{{ module_dir }}"
+        state: directory
+        mode: '0755'
 
+    - name: Check if /module_dir/module_stage-host.sh exists
+      ansible.builtin.stat:
+        path: "./{{ module_dir }}/{{ module_stage }}-{{ config_host }}.sh"
+      delegate_to: localhost
+      register: r_script_test
     - name: Check if /module_dir/module_stage-host.sh exists
       ansible.builtin.stat:
         path: "./{{ module_dir }}/{{ module_stage }}-{{ config_host }}.sh"
@@ -78,7 +95,17 @@
       ansible.builtin.debug:
         msg: "{{ r_result.stdout | default('') }}"
       when: r_script_test.stat.exists
+    - name: Output script result
+      ansible.builtin.debug:
+        msg: "{{ r_result.stdout | default('') }}"
+      when: r_script_test.stat.exists
 
+    - name: Write script result to file
+      ansible.builtin.copy:
+        content: "{{ r_result.stdout | default('') }}"
+        dest: "{{ job_info_dir }}/script.out"
+      delegate_to: localhost
+      when: r_script_test.stat.exists and job_info_dir is defined
     - name: Write script result to file
       ansible.builtin.copy:
         content: "{{ r_result.stdout | default('') }}"
@@ -90,7 +117,15 @@
       ansible.builtin.debug:
         var: r_result
       when: r_script_test.stat.exists and job_info_dir is defined
+    - name: Output script result
+      ansible.builtin.debug:
+        var: r_result
+      when: r_script_test.stat.exists and job_info_dir is defined
 
+    - name: Fail if stage was failed
+      ansible.builtin.fail:
+        msg: "Stage failed"
+      when: r_script_test.stat.exists and r_result.rc != 0
     - name: Fail if stage was failed
       ansible.builtin.fail:
         msg: "Stage failed"

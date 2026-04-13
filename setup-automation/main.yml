@@ -3,26 +3,25 @@
   hosts: localhost
   gather_facts: false
   tasks:
-    - name: Add bastion host
-      ansible.builtin.add_host:
-        name: "{{ lookup('ansible.builtin.env', 'BASTION_HOST') }}"
-        ansible_ssh_host: "{{ lookup('ansible.builtin.env', 'BASTION_HOST') }}"
-        ansible_ssh_port: "{{ lookup('ansible.builtin.env', 'BASTION_PORT') }}"
-        ansible_ssh_user: "{{ lookup('ansible.builtin.env', 'BASTION_USER') }}"
-        ansible_ssh_pass: "{{ lookup('ansible.builtin.env', 'BASTION_PASSWORD') }}"
-    - name: Add nodes
-      ansible.builtin.add_host:
-        name: "{{ item }}"
-        ansible_ssh_host: "{{ item }}"
-        ansible_ssh_port: "{{ lookup('ansible.builtin.env', 'BASTION_PORT') }}"
-        ansible_ssh_user: "{{ lookup('ansible.builtin.env', 'BASTION_USER') }}"
-        ansible_ssh_pass: "{{ lookup('ansible.builtin.env', 'BASTION_PASSWORD') }}"
-        ansible_python_interpreter: /usr/libexec/platform-python
-      loop:
-        - rhel1
-        - rhel2
-        - rhel3
-        - rhel-ai
+  - name: Add bastion host
+    ansible.builtin.add_host:
+      name: "{{ lookup('ansible.builtin.env', 'BASTION_HOST') }}"
+      ansible_ssh_host: "{{ lookup('ansible.builtin.env', 'BASTION_HOST') }}"
+      ansible_ssh_port: "{{ lookup('ansible.builtin.env', 'BASTION_PORT') }}"
+      ansible_ssh_user: "{{ lookup('ansible.builtin.env', 'BASTION_USER') }}"
+      ansible_ssh_pass: "{{ lookup('ansible.builtin.env', 'BASTION_PASSWORD') }}"
+  - name: Add nodes
+    ansible.builtin.add_host:
+      name: "{{ item }}"
+      ansible_ssh_host: "{{ item }}"
+      ansible_ssh_port: "{{ lookup('ansible.builtin.env', 'BASTION_PORT') }}"
+      ansible_ssh_user: "{{ lookup('ansible.builtin.env', 'BASTION_USER') }}"
+      ansible_ssh_pass: "{{ lookup('ansible.builtin.env', 'BASTION_PASSWORD') }}"
+      ansible_python_interpreter: /usr/libexec/platform-python
+    loop:
+      - rhel1
+      - rhel2
+      - rhel-ai
 
 - name: Demo Playbook for the ansible-runner API
   hosts: all:!localhost
@@ -32,9 +31,13 @@
     _showroom_env_domain: "{{ lookup('ansible.builtin.env', 'DOMAIN') | default('') }}"
     _showroom_env_litellm_url: "{{ lookup('ansible.builtin.env', 'LITELLM_API_URL') | default('') }}"
     _showroom_env_litellm_key: "{{ lookup('ansible.builtin.env', 'LITELLM_API_KEY') | default('') }}"
+  vars:
+    _showroom_env_guid: "{{ lookup('ansible.builtin.env', 'GUID') | default('') }}"
+    _showroom_env_domain: "{{ lookup('ansible.builtin.env', 'DOMAIN') | default('') }}"
+    _showroom_env_litellm_url: "{{ lookup('ansible.builtin.env', 'LITELLM_API_URL') | default('') }}"
+    _showroom_env_litellm_key: "{{ lookup('ansible.builtin.env', 'LITELLM_API_KEY') | default('') }}"
   tasks:
-    - name: Wait for connection
-      ansible.builtin.wait_for_connection:
+    - ansible.builtin.wait_for_connection:
 
     - name: Simple debug task
       ansible.builtin.debug:
@@ -49,7 +52,17 @@
         path: "/tmp/setup-scripts/"
         state: directory
         mode: '0755'
+    - name: Create a directory if it does not exist
+      ansible.builtin.file:
+        path: "/tmp/setup-scripts/"
+        state: directory
+        mode: '0755'
 
+    - name: Check if setup-server.sh exists
+      ansible.builtin.stat:
+        path: "./setup-{{ config_host }}.sh"
+      delegate_to: localhost
+      register: r_script_test
     - name: Check if setup-server.sh exists
       ansible.builtin.stat:
         path: "./setup-{{ config_host }}.sh"
@@ -78,6 +91,10 @@
       ansible.builtin.debug:
         var: r_result.stdout
       when: r_script_test.stat.exists
+    - name: Output script result
+      ansible.builtin.debug:
+        var: r_result.stdout
+      when: r_script_test.stat.exists
 
     - name: Write script result to file
       ansible.builtin.copy:
@@ -87,6 +104,10 @@
       when:
         - r_result is defined
 
+    - name: Output script result
+      ansible.builtin.debug:
+        var: r_result
+      when: r_result is defined
     - name: Output script result
       ansible.builtin.debug:
         var: r_result
