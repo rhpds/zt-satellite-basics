@@ -115,7 +115,7 @@ virtualmachines:
       hostname: rhel2
       prefer_fqdn_over_hostname: true
       manage_etc_hosts: true
-  - name: "rhel-ai"
+  - name: "opencode"
     image: "rhel-10-1-04-10-26-ai"
     bootloader: efi
     register_satellite: false
