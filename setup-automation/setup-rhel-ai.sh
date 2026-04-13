@@ -79,4 +79,3 @@ EOF
 
 systemctl daemon-reload
 systemctl start satellite-mcp.service
-
