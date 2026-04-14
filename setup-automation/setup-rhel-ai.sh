@@ -5,6 +5,9 @@ echo "starting setup-rhel-ai.sh" >> /tmp/setup-scripts/setup-rhel-ai.log
 # SSH to Satellite, create admin Hammer access token for MCP.
 export FOREMAN_TOKEN=$(ssh satellite.lab 'hammer user access-token create --user=admin --name="mcp server token"' | tail -1)
 
+# Upgrade opencode
+/root/.opencode/bin/opencode upgrade
+
 # Persist OpenCode LiteLLM configuration: write config.json with the Litellm provider configuration (heredoc unquoted so the variable is substituted).
 mkdir -p /root/.config/opencode/
 cat > /root/.config/opencode/config.json << EOF
