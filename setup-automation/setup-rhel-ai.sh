@@ -39,7 +39,8 @@ cat > /root/.config/opencode/config.json << EOF
       "enabled": true,
       "command": ["/usr/local/bin/linux-mcp-server","--no-verify-host-keys"]
     }
-  }
+  },
+  "enabled_providers": ["litellm"]
 }
 EOF
 
