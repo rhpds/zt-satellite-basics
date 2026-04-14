@@ -69,7 +69,7 @@ ssh -o StrictHostKeyChecking=no root@rhel2 $REGISTRATION_SCRIPT
 WARNING: This command might take a few minutes to complete.
 
 This script obtains the global registration script and runs it on
-`+rhel1+` and `+rhel2+` via SSH. The global registration script contains operations to register the hosts to the Satellite server, install specified packages, configure Red Hat Lightspeed (formerly known as Red Hat Insights) and many more. You can find more information about the global registration script in the https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/managing_hosts/registering-hosts-and-setting-up-host-integration_managing-hosts#Registering_Hosts_by_Using_Global_Registration_managing-hosts[Satellite documentation].
+`+rhel1+` and `+rhel2+` via SSH. The global registration script contains operations to register the hosts to the Satellite server, install specified packages, configure Red Hat Lightspeed (formerly known as Red Hat Insights) and many more. You can find more information about the global registration script in the https://docs.redhat.com/en/documentation/red_hat_satellite/6.19/html/managing_hosts/registering-hosts-and-setting-up-host-integration_managing-hosts#Registering_Hosts_by_Using_Global_Registration_managing-hosts[Satellite documentation].
 
 In the Satellite Web UI, navigate to `+All Hosts+` to view the newly
 registered hosts.

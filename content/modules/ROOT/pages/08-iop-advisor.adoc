@@ -9,7 +9,7 @@ Red Hat Lightspeed services for disconnected/air gapped Satellite environments a
 
 Red Hat Lightspeed advisor is a service that analyzes your systems and recommends actions to improve your security and performance. Red Hat Lightspeed vulnerability service is a service that tracks vulnerabilities and recommends actions to improve your security.
 
-The Satellite server in this lab is disconnected from the internet. You'll review the advisor service in this lab. There is an optional section at the end of this lab to review the vulnerability service. The vulnerability service is in technology preview in Satellite 6.18.
+The Satellite server in this lab is disconnected from the internet. You'll review the advisor service in this lab. There is an optional section at the end of this lab to review the vulnerability service. The vulnerability service is in technology preview in Satellite 6.19.
 
 =====
 .Review Lightspeed advisor recommendations
@@ -74,7 +74,7 @@ image::successfully-remediated.png[../assets/successfully-remediated]
 
 The Vulnerability Service powered by Red Hat Lightspeed is the primary method for tracking security issues involving viewing and triaging CVEs (Common Vulnerabilities and Exposures).
 
-NOTE: The vulnerability service is in technology preview in Satellite 6.18.
+NOTE: The vulnerability service is in technology preview in Satellite 6.19.
 
 The system displays detailed information about CVEs, including the CVE ID, description, publish date, severity, and CVSS score.
 

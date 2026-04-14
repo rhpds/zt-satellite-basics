@@ -2,7 +2,7 @@
 # Single Point of Truth for Lab Information
 
 lab:
-  name: "Red Hat Satellite Basics 6.18"
+  name: "Red Hat Satellite Basics 6.19"
   shortname: "zt-satellite-basics"
   maintainer: "Matthew Yee (myee@redhat.com)"
 

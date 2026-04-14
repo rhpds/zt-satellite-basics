@@ -1,10 +1,10 @@
 :imagesdir: ../assets/images
 
-== Introduction to Red Hat Satellite 6.18 Basics
+== Introduction to Red Hat Satellite 6.19 Basics
 
 The lab environment consists of the following
 
-- Red Hat Satellite 6.18.0 Server (Satellite is preinstalled and content/software is synchronized.)
+- Red Hat Satellite 6.19.0 Server (Satellite is preinstalled and content/software is synchronized.)
 - Red Hat Enterprise Linux hosts.
 
 .Lab topology
