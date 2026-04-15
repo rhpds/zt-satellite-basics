@@ -68,13 +68,43 @@ image::successfully-remediated.png[../assets/successfully-remediated]
 =====
 
 =====
-.Optional: Vulnerability service
+.Update the cvemap
+[%collapsible]
+====
+Before we delve into the vulnerability service, we need to update the CVE map file.
+
+The CVE map is a file that contains the mapping of CVEs to packages. This file is used by the vulnerability service to determine which CVEs affect which packages. The CVE map is updated regularly to ensure that the vulnerability service has the most up-to-date information about CVEs.
+
+To update the CVE map, run the following command in the `+satellite.lab terminal+`.
+[source,bash,run]
+----
+curl -o cvemap.xml https://security.access.redhat.com/data/meta/v1/cvemap.xml
+----
+
+This command will download the latest CVE mapping file from Red Hat. The cvemap.xml file maps every CVE to Red Hat product vulnerability data.
+
+Each CVE entry contains:
+  - CVE ID and description
+  - Affected releases with CPE identifiers
+  - Product names, release dates, and advisories (RHSA-xxxx)
+  - Package names and fixed-in versions
+  - Vulnerability status (e.g., "Not vulnerable" with explanation)
+
+To import the CVE map into Satellite, run the following command:
+[source,bash,run]
+----
+cp cvemap.xml /var/lib/foreman/
+----
+
+====
+=====
+
+=====
+.Vulnerability service
 [%collapsible]
 ====
 
 The Vulnerability Service powered by Red Hat Lightspeed is the primary method for tracking security issues involving viewing and triaging CVEs (Common Vulnerabilities and Exposures).
-
-NOTE: The vulnerability service is in technology preview in Satellite 6.19.
 
 The system displays detailed information about CVEs, including the CVE ID, description, publish date, severity, and CVSS score.
 
