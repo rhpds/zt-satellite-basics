@@ -2,11 +2,26 @@
 # Apply all installable errata to rhel1 and rhel2, then resolve traces
 # Corresponds to module-10: Update Errata
 
-# Apply all installable errata to rhel1 and rhel2 via remote execution
-hammer job-invocation create \
-  --feature katello_errata_install \
-  --search-query "name = rhel1.lab or name = rhel2.lab" \
-  --inputs "errata=all"
+for HOST in rhel1.lab rhel2.lab; do
+  echo "Listing applicable errata for ${HOST}..." >> /tmp/progress.log
+
+  ERRATA_IDS=$(hammer --output csv --no-headers host errata list \
+    --host "$HOST" \
+    --fields "Erratum ID" | paste -sd, -)
+
+  if [ -z "$ERRATA_IDS" ]; then
+    echo "No applicable errata found for ${HOST}" >> /tmp/progress.log
+    continue
+  fi
+
+  echo "Applying errata to ${HOST}: ${ERRATA_IDS}" >> /tmp/progress.log
+
+  hammer job-invocation create \
+    --feature katello_errata_install \
+    --inputs "errata=${ERRATA_IDS}" \
+    --search-query "name = ${HOST}"
+done
+
 
 # Resolve traces on rhel1 via remote execution
 hammer job-invocation create \
