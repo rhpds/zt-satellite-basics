@@ -1,6 +1,6 @@
 :imagesdir: ../assets/images
 
-== Red Hat Lightspeed for Satellite (formerly known as Red Hat Insights)
+== Red Hat Lightspeed for Satellite
 
 Red Hat Lightspeed services for disconnected/air gapped Satellite environments are now available and includes the following services:
 
@@ -121,6 +121,21 @@ When you click on a CVE, you will be taken to the CVE details page. Here you can
 image::cve-details.png[../assets/cve-details]
 
 Later in this lab, you'll remediate this CVE through the errata update process.
+
+====
+=====
+
+=====
+.Disable a vulnerability
+[%collapsible]
+====
+
+It might be the case that a particular CVE is not relevant to your environment. You can disable the CVE to reduce the "noise" of spurious CVEs.
+
+To disable a CVE, click on the `+Disable Vulnerability analysis+` button on the CVE details page.
+
+.Disable CVE
+image::disable-cve.png[../assets/disable-cve]
 
 ====
 =====
