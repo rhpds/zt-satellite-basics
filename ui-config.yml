@@ -49,6 +49,7 @@ antora:
 tabs:
   - name: "Satellite Web UI"
     url: https://satellite-${guid}.${domain}/
+    external: true
   - name: "satellite.lab terminal"
     url: /wetty_satellite/ssh/root
   - name: "rhel1.lab terminal"
