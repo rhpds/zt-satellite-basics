@@ -6,45 +6,6 @@ antora:
     - name: "01-introduction"
       label: "Introduction"
       solveButton: false
-    - name: "02-syncrepos"
-      label: "Syncrepos"
-      solveButton: false
-    - name: "03-lifecycleenv"
-      label: "Lifecycleenv"
-      solveButton: false
-    - name: "04-contentview"
-      label: "Contentview"
-      solveButton: false
-    - name: "05-activationkey"
-      label: "Activationkey"
-      solveButton: false
-    - name: "06-configure-host-group"
-      label: "Configure Host Group"
-      solveButton: false
-    - name: "07-registerhost"
-      label: "Registerhost"
-      solveButton: false
-    - name: "08-iop-advisor"
-      label: "Iop Advisor"
-      solveButton: false
-    - name: "09-tracer"
-      label: "Tracer"
-      solveButton: false
-    - name: "10-updateerratum"
-      label: "Updateerratum"
-      solveButton: false
-    - name: "11-installsoftware"
-      label: "Installsoftware"
-      solveButton: false
-    - name: "12-filter-software"
-      label: "Filter Software"
-      solveButton: false
-    - name: "13-satellite-ai-integration"
-      label: "Satellite AI Integration"
-      solveButton: false
-    - name: "14-conclusion"
-      label: "Conclusion"
-      solveButton: false
 
 tabs:
   - name: "Satellite Web UI"
