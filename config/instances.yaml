@@ -80,7 +80,7 @@ virtualmachines:
           U1n7dd9ahyLiuZayPg==
           -----END CERTIFICATE-----
   - name: "rhel1"
-    image: "rhel-10-1-11-13-25"
+    image: "rhel-10-1-04-15-26"
     bootloader: efi
     register_satellite: false
     memory: "4G"
@@ -98,7 +98,7 @@ virtualmachines:
       prefer_fqdn_over_hostname: true
       manage_etc_hosts: true
   - name: "rhel2"
-    image: "rhel-10-1-11-13-25"
+    image: "rhel-10-1-04-15-26"
     bootloader: efi
     register_satellite: false
     memory: "4G"
