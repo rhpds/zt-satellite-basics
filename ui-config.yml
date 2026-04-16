@@ -59,4 +59,5 @@ tabs:
     url: /wetty_rhel-ai/ssh/root
   - name: "rhel-ai.lab Web GUI"
     url: https://opencode-${guid}.${domain}/
-  
+    external: true
+
