@@ -26,7 +26,7 @@ The `rhel-ai.lab` system is pre-installed with `opencode` client. `opencode` is 
 
 This lab is configured to use the `minimax-m2` model, which is a powerful LLM that can provide intelligent insights and recommendations based on the data it receives from the Satellite MCP server.
 
-First, click on the `rhel-ai.lab` terminal.
+First, click on the `rhel-ai.lab terminal` tab.
 
 .rhel-ai.lab terminal
 image::rhelaitab.png[]
@@ -92,8 +92,10 @@ Which hosts in the Satellite inventory have pending errata?
 
 The output will look similar to the image below.
 
+NOTE: You may recall that you patched all the hosts in a previous section. When you progressed to this section, the lab tooling installed various packages with known CVEs on the `rhel1` and `rhel2` hosts to ensure that there are pending errata for the LLM to find.
+
 .Hosts with pending errata
-image::systemswitherrata.png[]
+image::systemswitherrata2.png[]
 ====
 =====
 
@@ -101,14 +103,32 @@ image::systemswitherrata.png[]
 Trigger a remote execution job for patching
 [%collapsible]
 ====
-In the `opencode` prompt, ask the following question to trigger a remote execution job for patching:
+In the `opencode` prompt, tell the LLM to update rhel1:
 [source,js]
 ----
-Can you trigger a remote execution job to patch all the hosts in the inventory except satellite.lab? Make sure to explicitly mention the individual CVEs.
+Update all software on rhel1.
 ----
 
 .Host patching remote execution job
 image::appliederrata.png[]
+
+It may take a couple minutes before `+rhel1+` is fully updated.
+
+You can try asking the LLM to perform other tasks.
+
+For example:
+
+[source,js]
+----
+Show me the number of entitlements I have and used
+----
+
+[source,js]
+----
+What kernel versions are running on my hosts?
+----
+
+When you're done experimenting, you can conclude this lab in the next section.
 
 ====
 =====
