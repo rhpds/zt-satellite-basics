@@ -37,3 +37,6 @@ ssh root@rhel2.lab "dnf install -y libvpx-1.14.1-4.el10 --allowerasing 2>/dev/nu
 # Trigger vulnerability - downgrade packages with known CVEs
 ssh root@rhel1.lab "dnf downgrade -y gnutls 2>/dev/null || true"
 ssh root@rhel1.lab "dnf install -y tar-1.35-8.el10_1 --allowerasing 2>/dev/null || dnf downgrade -y tar 2>/dev/null || true"
+
+curl -o cvemap.xml https://security.access.redhat.com/data/meta/v1/cvemap.xml
+cp cvemap.xml /var/lib/foreman/
