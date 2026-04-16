@@ -142,12 +142,12 @@ Navigate to the `+burger+` stack button and click on it.
 .Burger button
 image::burger-button.png[../assets/burger-button]
 
-To disable a CVE, click on the `+Disable Vulnerability analysis+` button on the CVE details page.
+To disable a CVE for a specific host, click on the `+Disable Vulnerability analysis+` button on the CVE details page.
 
 .Disable CVE
 image::disable-cve.png[../assets/disable-cve]
 
-From now on, the disabled CVE will not but shown.
+From now on, the disabled CVE will not but shown for this specific host.
 
 ====
 =====
