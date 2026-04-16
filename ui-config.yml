@@ -33,19 +33,16 @@ antora:
     - name: "10-updateerratum"
       label: "Updateerratum"
       solveButton: false
-    - name: "11-apply-system-role"
-      label: "Apply System Role"
-      solveButton: false
-    - name: "12-installsoftware"
+    - name: "11-installsoftware"
       label: "Installsoftware"
       solveButton: false
-    - name: "13-filter-software"
+    - name: "12-filter-software"
       label: "Filter Software"
       solveButton: false
-    - name: "14-satellite-ai-integration"
+    - name: "13-satellite-ai-integration"
       label: "Satellite AI Integration"
       solveButton: false
-    - name: "15-conclusion"
+    - name: "14-conclusion"
       label: "Conclusion"
       solveButton: false
 

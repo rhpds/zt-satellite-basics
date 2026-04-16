@@ -1,6 +1,6 @@
 #!/bin/sh
 # Create a host collection and install tmux on rhel1 and rhel2
-# Corresponds to module-12: Install software
+# Corresponds to module-11: Install software
 
 ORG="Acme Org"
 

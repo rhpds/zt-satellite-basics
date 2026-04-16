@@ -1,5 +1,5 @@
 #!/bin/sh
-echo "Starting module called 14-satellite-ai-integration" >> /tmp/progress.log
+echo "Starting module called 13-satellite-ai-integration" >> /tmp/progress.log
 
 # Trigger vulnerability - downgrade packages with known CVEs
 dnf downgrade -y gnutls 2>/dev/null || true

@@ -1,6 +1,6 @@
 #!/bin/sh
 # Create a content view filter to exclude emacs, publish and promote
-# Corresponds to module-13: Filter content
+# Corresponds to module-12: Filter content
 
 ORG="Acme Org"
 

@@ -1,5 +1,5 @@
 #!/bin/sh
-echo "Starting module called 14-satellite-ai-integration" >> /tmp/progress.log
+echo "Starting module called 13-satellite-ai-integration" >> /tmp/progress.log
 
 # Trigger vulnerability - install packages with known CVEs
 # openssl-3.5.1-4.el10_1 is vulnerable to RHSA-2026:1472 (CVE-2025-11187, CVE-2025-15467, CVE-2025-15468, CVE-2026-22795, CVE-2026-22796)
