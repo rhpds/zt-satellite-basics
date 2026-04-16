@@ -132,10 +132,22 @@ Later in this lab, you'll remediate this CVE through the errata update process.
 
 It might be the case that a particular CVE is not relevant to your environment. You can disable the CVE to reduce the "noise" of spurious CVEs.
 
+Click on a CVE to view the details.
+
+.CVE details
+image::cve-details2.png[../assets/cve-details]
+
+Navigate to the `+burger+` stack button and click on it.
+
+.Burger button
+image::burger-button.png[../assets/burger-button]
+
 To disable a CVE, click on the `+Disable Vulnerability analysis+` button on the CVE details page.
 
 .Disable CVE
 image::disable-cve.png[../assets/disable-cve]
+
+From now on, the disabled CVE will not but shown.
 
 ====
 =====
