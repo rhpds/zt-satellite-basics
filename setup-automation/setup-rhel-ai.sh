@@ -84,5 +84,22 @@ EOF
 systemctl daemon-reload
 systemctl start satellite-mcp.service
 
-# Start OpenCode web interface on port 9999 in the background, redirecting output to the log file.
-/root/.opencode/bin/opencode web --port 9999 --hostname 0.0.0.0 &
+# Install and start OpenCode web interface systemd unit.
+cat > /etc/systemd/system/opencode.service << 'EOF'
+[Unit]
+Description=OpenCode Web Interface
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/root/.opencode/bin/opencode web --port 9999 --hostname 0.0.0.0
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable --now opencode.service
