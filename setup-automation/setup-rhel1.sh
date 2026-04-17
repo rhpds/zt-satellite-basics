@@ -7,6 +7,14 @@ systemctl mask dnf-automatic-install.timer
 
 # Generate SELinux denials for lab demonstration.
 # Write a script to a non-standard location and serve HTTP from a non-standard port/dir.
+#
+# 1. httpd reading user_home_t content — serves files from /root/webapp instead of /var/www
+# 2. httpd binding a non-standard port — listens on 8484, which isn't in http_port_t
+# 3. Executing a script with httpd_sys_content_t — copies a script into /var/www/html and runs it
+# 4. Running a binary from /tmp (tmp_t) — copies nc to /tmp and listens on a port
+#
+# All of these should show up in ausearch -m avc and sealert for participants to investigate.
+
 cat > /root/selinux-tripwire.sh << 'TRIPWIRE'
 #!/bin/sh
 
