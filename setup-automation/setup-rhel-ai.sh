@@ -101,5 +101,9 @@ RestartSec=5
 WantedBy=multi-user.target
 EOF
 
+chcon -t bin_t /root/.opencode/bin/opencode
+semanage fcontext -a -t bin_t '/root/.opencode/bin(/.*)?'
+restorecon -Rv /root/.opencode/bin/
+
 systemctl daemon-reload
 systemctl enable --now opencode.service
