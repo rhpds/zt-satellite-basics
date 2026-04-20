@@ -91,3 +91,5 @@ cat /etc/yum.repos.d/redhat.repo
 
 .Repository listing on rhel1 system
 image::repolist.png[]
+====
+=====
