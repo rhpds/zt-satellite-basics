@@ -47,7 +47,7 @@ IMPORTANT: The name of the activation key will be used to add hosts. The
 names must match or the hosts will not be registered.
 
 .Activation key creation wizard
-image::akcreation.png[../assets/akcreation]
+image::activationkey.png[../assets/akcreation]
 
 If you click on `+Repository Sets+`, you’ll notice that this Activation
 Key provides access to the RHEL 10 AppStream and BaseOS repositories. The `Status` of these two repositories shows as `Enabled`.
@@ -56,3 +56,5 @@ This access is provided by configuring the Activation Key to use the
 
 .Activation key repository sets
 image::akrepos.png[akrepos]
+====
+=====
