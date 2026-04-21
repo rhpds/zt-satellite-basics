@@ -1,7 +1,7 @@
 ---
 litemaas:
   models:
-    - minimax-m2
+    - deepseek-r1-distill-qwen-14b
   duration: 1d
   enable_user_info_messages: true
   enable_user_info_data: true
