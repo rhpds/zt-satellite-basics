@@ -12,7 +12,8 @@
       "Bash(git merge *)",
       "Bash(git stash *)",
       "WebSearch",
-      "WebFetch(domain:access.redhat.com)"
+      "WebFetch(domain:access.redhat.com)",
+      "Bash(git -C /Users/myee/repos/zt-satellite-basics branch)"
     ]
   }
 }

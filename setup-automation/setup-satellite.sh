@@ -33,6 +33,7 @@ ssh root@rhel1.lab "dnf install -y libvpx-1.14.1-4.el10 --allowerasing 2>/dev/nu
 
 ssh root@rhel2.lab "dnf install -y openssl-3.5.1-4.el10_1 openssl-libs-3.5.1-4.el10_1 --allowerasing 2>/dev/null || true"
 ssh root@rhel2.lab "dnf install -y libvpx-1.14.1-4.el10 --allowerasing 2>/dev/null || true"
+ssh root@rhel2.lab "dnf downgrade -y vim-minimal vim-common 2>/dev/null || true"
 
 # Trigger vulnerability - downgrade packages with known CVEs
 ssh root@rhel1.lab "dnf downgrade -y gnutls 2>/dev/null || true"
