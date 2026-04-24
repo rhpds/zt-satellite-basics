@@ -8,6 +8,9 @@ systemctl mask dnf-automatic-install.timer
 systemctl stop dnf-automatic.timer
 systemctl disable dnf-automatic.timer
 
+sed -i 's/^apply_updates.*/apply_updates = no/' /etc/dnf/automatic.conf
+sed -i 's/^download_updates.*/download_updates = no/' /etc/dnf/automatic.conf
+
 # Generate SELinux denials for lab demonstration.
 # Write a script to a non-standard location and serve HTTP from a non-standard port/dir.
 #
