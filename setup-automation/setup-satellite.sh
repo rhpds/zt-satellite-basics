@@ -39,5 +39,10 @@ ssh root@rhel2.lab "dnf downgrade -y vim-minimal vim-common 2>/dev/null || true"
 ssh root@rhel1.lab "dnf downgrade -y gnutls 2>/dev/null || true"
 ssh root@rhel1.lab "dnf install -y tar-1.35-8.el10_1 --allowerasing 2>/dev/null || dnf downgrade -y tar 2>/dev/null || true"
 
+# Get the latest CVE map from Red Hat and copy it to the Foreman directory so that it can be used by the Foreman CVE plugin to determine which CVEs are applicable to the registered hosts.
 curl -o cvemap.xml https://security.access.redhat.com/data/meta/v1/cvemap.xml
 cp cvemap.xml /var/lib/foreman/
+
+# Refresh Red Hat Lightspeed
+ssh root@rhel1.lab "insights-client"
+ssh root@rhel2.lab "insights-client"
