@@ -35,7 +35,7 @@ image::installable-errata.png[installable radio box]
 Let’s install all the Installable Errata to our two hosts.
 
 . Select all of the Errata we just filtered.
-. Click `+Apply Erratum+`.
+. Click `+Apply Errata+`.
 
 .Select all installable errata
 image::errata-select-apply.png[select all installable errata]

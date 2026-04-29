@@ -48,7 +48,7 @@ This particular advisory can be remediated with an ansible playbook.
 
 Let’s remediate all the problems found by advisor.
 
-. Select the `+rhel1+` and `+rhel2+` hosts. Do not select `+satellite.lab+`.
+. Select the `+rhel1+` and `+rhel2+` hosts.
 . Click `+Remediate+`.
 
 .Remediate hosts
@@ -60,6 +60,13 @@ Review all the remediations and click `+Remediate+`.
 image::review-all-remediate.png[../assets/review-all-remediate]
 
 When all remediations have been applied, proceed to the next section by clicking the `+Next+` button at the bottom of the page. You can complete the optional vulnerability service section if you wish.
+
+You can also review the progress of the remediation by expanding the job.
+
+.Remediation job
+image::expand_lightspeed_remediation.png[]
+
+The remediation job details show the progress of the remediation playbook. You can see the status of each task and whether it was successful or not.
 
 .Remediation job details
 image::successfully-remediated.png[../assets/successfully-remediated]
@@ -102,6 +109,11 @@ Next, we need to trigger the process to upload information from the rhel hosts t
 ----
 insights-client
 ----
+
+Here's what the output of the command looks like:
+
+.Insights client output
+image::collect_info_with_insights_client.png[]
 
 ====
 =====
@@ -154,7 +166,7 @@ To disable a CVE for a specific host, click on the `+Disable Vulnerability analy
 .Disable CVE
 image::disable-cve.png[../assets/disable-cve]
 
-From now on, the disabled CVE will not but shown for this specific host.
+From now on, the disabled CVE will not but shown for this specific host. This disables all cve's for a host not just a single cve.
 
 ====
 =====

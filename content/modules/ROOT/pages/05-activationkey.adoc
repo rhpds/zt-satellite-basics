@@ -38,16 +38,29 @@ image::createak.png[../assets/createak]
 RHEL10
 ----
 
-[arabic, start=2]
-. Select the `+Test+` environment.
-. Select the `+RHEL10+` content view
-. Click `+Save+`.
-
 IMPORTANT: The name of the activation key will be used to add hosts. The
 names must match or the hosts will not be registered.
 
-.Activation key creation wizard
-image::activationkey.png[../assets/akcreation]
+[arabic, start=2]
+. Click on `+Assign content view environments+`
+
+.Activation key creation.
+image::activation_key_creation_1.png[]
+
+Next, in the `+Assign content view environments+` menu, do the following:
+
+[arabic, start=1]
+. Click on the `+Test+` lifecycle environment to select it.
+. Select the `+RHEL10+` content view.
+. Click `+Save+`.
+
+.Assign content view environments
+image::activation_key_creation_2.png[]
+
+Finally, click on `+Save+` to create the activation key.
+
+.Save the activation key
+image::activation_key_creation_3.png[]
 
 If you click on `+Repository Sets+`, you’ll notice that this Activation
 Key provides access to the RHEL 10 AppStream and BaseOS repositories. The `Status` of these two repositories shows as `Enabled`.

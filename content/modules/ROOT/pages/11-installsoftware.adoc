@@ -104,13 +104,18 @@ tmux
 ----
 
 [arabic, start=2]
-. Click `+install+`.
+. Click `+Install+`.
 . Click `+yes+`.
 
 .Update packages wizard
 image::updatepackages.png[../assets/updatepackages]
 
-You’ll be taken to the job status page. You can check on the real-time installation progress by clicking on a host.
+You’ll be taken to the job status page. You can check on the real-time installation progress by clicking on the > or chevron next to the host name.
+
+.Chevron
+image::chevron_host.png[../assets/chevron_host]
+
+See the job details below.
 
 .Job details
 image::installtmuxstatusonhost.png[../assets/installtmuxstatusonhost]

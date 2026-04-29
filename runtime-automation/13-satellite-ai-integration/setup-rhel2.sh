@@ -10,3 +10,4 @@ dnf install -y libvpx-1.14.1-4.el10 --allowerasing 2>/dev/null || true
 
 echo "Security misconfigurations applied to rhel2" >> /tmp/progress.log
 
+insights-client

@@ -44,9 +44,9 @@ Opencode has a bug which emits spurious error messages upon launch. The messages
 .opencode bug
 image::opencodebug.png[]
 
-. Type ctrl+p.
+. Press ctrl+p.
 
-. Type escape key.
+. Press the escape key.
 
 This will open the opencode options menu. When you exit the menu, the error messages will be cleared.
 --
@@ -75,7 +75,7 @@ The output will look similar to the image below.
 .Satellite inventory question and answer
 image::totalnumberhostssatelliteinventory.png[]
 
-In the output, we can see that the LLM was able to query the Satellite MCP server and retrieve the total number of hosts in the Satellite inventory, which is 3 in this case.
+In the output, we can see that the LLM was able to query the Satellite MCP server and retrieve the total number of hosts in the Satellite inventory, which is 2 in this case.
 
 ====
 =====
@@ -113,6 +113,8 @@ Update all software on rhel1.
 image::appliederrata.png[]
 
 It may take a couple minutes before `+rhel1+` is fully updated.
+
+IMPORTANT: The efficacy of the LLM's ability to apply commands to run operations like patching depends on the quality of the LLM. In this lab, we are using the `minimax-m2` model because it's cheap. It's not particularly good at interpreting intent and thus fails at many tasks. For better results, use a higher quality model.
 
 You can try asking the LLM to perform other tasks.
 
