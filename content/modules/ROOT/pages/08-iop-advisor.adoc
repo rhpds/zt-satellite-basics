@@ -103,7 +103,9 @@ To import the CVE map into Satellite, run the following command:
 cp cvemap.xml /var/lib/foreman/
 ----
 
-Next, we need to trigger the process to upload information from the rhel hosts to the satellite server so that the vulnerability service can determine whether the hosts are affected by any CVEs. Run the following command in the terminals of `rhel1` and `rhel2`.:
+Next, we need to trigger the process to upload information from the rhel hosts to the satellite server so that the vulnerability service can determine whether the hosts are affected by any CVEs.
+
+Run the following command in the terminals of `rhel1` and `rhel2`:
 
 [source,bash,run]
 ----
@@ -145,11 +147,11 @@ Later in this lab, you'll remediate this CVE through the errata update process.
 =====
 
 =====
-.Disable a vulnerability
+.Disable vulnerability analysis for a host
 [%collapsible]
 ====
 
-It might be the case that a particular CVE is not relevant to your environment. You can disable the CVE to reduce the "noise" of spurious CVEs.
+It might be the case that a particular CVE is not relevant to your environment. You can disable the analysis of a specific host to reduce the "noise" of spurious CVEs.
 
 Click on a CVE to view the details.
 
