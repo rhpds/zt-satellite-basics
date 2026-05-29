@@ -43,7 +43,7 @@ emacs
 [arabic, start=2]
 . Select `+Exclude filter+`.
 . Give the filter a description. We’re going to exclude emacs from being
-included in the `+RHEL9+` content view.
+included in the `+RHEL10+` content view.
 
 [source,json]
 ----
@@ -86,7 +86,7 @@ image::addrpmruleemacs.png[add rpm rule]
 [%collapsible]
 ====
 
-Click `+Publish new version+` to publish a new version of the `+RHEL9+`
+Click `+Publish new version+` to publish a new version of the `+RHEL10+`
 content view containing our new `+emacs+` filter.
 
 .Publish a new version of the content view containing the new filter

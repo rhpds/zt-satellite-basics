@@ -14,7 +14,7 @@ execution. We’ll perform the following tasks:
 . Synchronize the `+Satellite client 6+` repository to our Satellite
 server.
 . Make the repository available to our hosts by adding it to our
-`+RHEL9+` content view.
+`+RHEL10+` content view.
 . Install `+katello-host-tools-tracer+` on our hosts.
 
 =====
