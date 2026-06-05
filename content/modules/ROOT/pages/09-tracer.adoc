@@ -186,7 +186,7 @@ repository to `+Enabled+`.
 [arabic]
 . Select the `+Red Hat Satellite Client 6 for RHEL 10 x86_64 RPMs+`
 repository.
-. Click `+Override to Enabled+`.
+. Click +Select Action+ and choose`+Override to Enabled+`.
 
 .Override to enable the Satellite 6 client repo
 image::overrideenable.png[override]

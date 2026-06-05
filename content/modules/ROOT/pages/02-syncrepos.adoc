@@ -6,7 +6,7 @@ This section documents the process to synchronize Red Hat Enterprise
 Linux 9 BaseOS and AppStream repositories from the content delivery
 network. ##*Please do not synchronize the repositories*##. Please feel free to skip to the next assignment.
 
-IMPORTANT: In order to speed up the lab, the RHEL 9 BaseOS and AppStream repos have been pre-synchronized. If you are familiar with this process please feel free to skip to the next assignment. If you decide to run through this procedure, please do not attempt to re-synchronize the repositories.
+IMPORTANT: In order to speed up the lab, the RHEL 10 BaseOS and AppStream repos have been pre-synchronized. If you are familiar with this process please feel free to skip to the next assignment. If you decide to run through this procedure, please do not attempt to re-synchronize the repositories.
 
 =====
 .Red Hat Repositories - FOR DOCUMENTATION PURPOSES ONLY
@@ -23,7 +23,7 @@ image::redhatrepositories.png[../assets/redhatrepositories]
 
 The Red Hat Repositories menu will provide a list of available
 repositories. You can choose to synchronize whatever you want. In this
-lab we’ll synchronize the `+BaseOS+` and `+AppStream+` repos for RHEL 9.
+lab we’ll synchronize the `+BaseOS+` and `+AppStream+` repos for RHEL 10.
 
 Red Hat Enterprise Linux 9 is distributed through two main repositories:
 

@@ -42,12 +42,12 @@ emacs
 
 [arabic, start=2]
 . Select `+Exclude filter+`.
-. Give the filter a description. We’re going to exclude emacs from being
+. Give the filter a description. We’re going to prevent emacs from being
 included in the `+RHEL10+` content view.
 
 [source,json]
 ----
-added emacs filter
+prevent emacs from being installed
 ----
 
 [arabic, start=4]

@@ -13,7 +13,7 @@ process.
 
 In our registration command, we’ll specify that the new host should be added to the `+Application Servers+` host group we just created. As well, we’ll ignore certificate errors (since we’re using a self signed certificate) and we will set up Red Hat Lightspeed (formerly known as Red Hat Red Hat Insights).
 
-== Create a registration script
+== (Do not) Create a registration script
 
 The following section is for documentation purposes. Please don't run the commands.
 
