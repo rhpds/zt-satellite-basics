@@ -51,7 +51,7 @@ image::opencodebug.png[]
 This will open the opencode options menu. When you exit the menu, the error messages will be cleared.
 --
 
-You may choose to use the web gui for Opencode instead of the terminal interface. Click on the tab `+rhel-ai.lab Web GUI+` to access the web interface. CLick on the project called +/+ to open the prompt.
+You may choose to use the web gui for Opencode instead of the terminal interface. Click on the tab `+rhel-ai.lab Web GUI+` to access the web interface. Click on the project called +/+ to open the prompt.
 
 .Opencode WebGUI
 image::opencode_webgui.png[]
