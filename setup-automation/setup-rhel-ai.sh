@@ -71,7 +71,7 @@ ContainerName=satellite-mcp
 Image=docker.io/library/test:test
 PublishPort=8080:8080
 Volume=/root/foreman_raw_ca:/app/ca.pem:ro,Z
-Exec=--foreman-url https://satellite.lab --allowed-rex-features "katello_errata_install,katello_package_install" --allowed-cv-actions "publish,promote,incremental_update"
+Exec=--foreman-url https://satellite.lab --allowed-rex-features "katello_errata_install,katello_package_install,katello_errata_install_by_search" --allowed-cv-actions "publish,promote,incremental_update"
 
 [Service]
 Restart=always
