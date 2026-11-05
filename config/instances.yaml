@@ -8,7 +8,7 @@ litemaas:
 
 virtualmachines:
   - name: "satellite"
-    image: "satellite-server-1-6-19-11-02-26-2"
+    image: "satellite-server-1-6-19-11-04-26"
     bootloader: efi
     register_satellite: false
     memory: "32G"
