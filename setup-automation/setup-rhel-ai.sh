@@ -21,8 +21,8 @@ cat > /root/.config/opencode/config.json << EOF
         "baseURL": "$LITELLM_API_URL"
       },
       "models": {
-        "minimax-m2": {
-          "name": "minimax-m2"
+        "gpt-oss-120b": {
+          "name": "gpt-oss-120b"
         }
       }
     }
