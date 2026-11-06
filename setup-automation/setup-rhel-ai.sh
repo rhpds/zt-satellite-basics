@@ -2,15 +2,45 @@
 
 echo "starting setup-rhel-ai.sh" >> /tmp/setup-scripts/setup-rhel-ai.log
 
-# SSH to Satellite, create admin Hammer access token for MCP.
-export FOREMAN_TOKEN=$(ssh satellite.lab 'hammer user access-token create --user=admin --name="mcp server token"' | tail -1)
+# SSH to Satellite, create an admin Hammer access token for MCP. Use a unique token
+# name: re-running setup must not collide with the token created by a previous run
+# ("Name has already been taken"), and an empty token would silently break the MCP server.
+TOKEN_NAME="mcp server token $(date +%s)"
+export FOREMAN_TOKEN=$(ssh satellite.lab "hammer user access-token create --user=admin --name='$TOKEN_NAME'" | tail -1)
+if [ -z "$FOREMAN_TOKEN" ]; then
+  echo "ERROR: could not create Foreman access token" >> /tmp/setup-scripts/setup-rhel-ai.log
+  exit 1
+fi
 
-# Upgrade opencode to v2 (--major is the documented V1 -> V2 path). Guard against re-runs,
-# never block on input, and log a failure instead of stopping the rest of the setup.
-if ! /root/.opencode/bin/opencode --version 2>/dev/null | grep -qE '^v?2\.'; then
-  timeout 600 /root/.opencode/bin/opencode upgrade --major \
-    </dev/null >> /tmp/setup-scripts/setup-rhel-ai.log 2>&1 \
-    || echo "WARNING: opencode upgrade --major failed; continuing" >> /tmp/setup-scripts/setup-rhel-ai.log
+# Install OpenCode v2 for root. The lab terminal auto-logs in as root and root's PATH
+# puts /root/.opencode/bin first, so this is the binary participants run. The image
+# ships OpenCode 1 at that path, so the installer has to replace it in place.
+# Note: v2 reports its version as "opencode v2.x.y", not just "v2.x.y".
+OC_BIN=/root/.opencode/bin/opencode
+if ! "$OC_BIN" --version 2>/dev/null | grep -q 'v2\.'; then
+  echo "Installing OpenCode v2 for root" >> /tmp/setup-scripts/setup-rhel-ai.log
+  timeout 600 curl -fsSL https://opencode.ai/v2/install -o /tmp/opencode-v2-install.sh
+  HOME=/root timeout 600 bash /tmp/opencode-v2-install.sh --no-modify-path \
+    >> /tmp/setup-scripts/setup-rhel-ai.log 2>&1
+fi
+
+# The installer unpacks through /tmp, which can leave the binary labelled user_tmp_t.
+# Reset it to the policy default for /root.
+restorecon -v "$OC_BIN" >> /tmp/setup-scripts/setup-rhel-ai.log 2>&1 || true
+
+if ! "$OC_BIN" --version 2>/dev/null | grep -q 'v2\.'; then
+  echo "ERROR: OpenCode v2 is not installed; aborting" >> /tmp/setup-scripts/setup-rhel-ai.log
+  exit 1
+fi
+OC_VERSION=$("$OC_BIN" --version 2>/dev/null)
+echo "Using $OC_VERSION" >> /tmp/setup-scripts/setup-rhel-ai.log
+
+# The lab is terminal-only now. Remove the web interface unit left behind by
+# earlier versions of this script so it cannot crash-loop on an existing deployment.
+if [ -f /etc/systemd/system/opencode.service ]; then
+  systemctl disable --now opencode.service >> /tmp/setup-scripts/setup-rhel-ai.log 2>&1 || true
+  rm -f /etc/systemd/system/opencode.service
+  systemctl daemon-reload
 fi
 
 # Persist OpenCode v2 configuration: default model plus the MCP servers (heredoc unquoted
@@ -19,7 +49,7 @@ mkdir -p /root/.config/opencode/
 cat > /root/.config/opencode/opencode.json << EOF
 {
   "\$schema": "https://opencode.ai/config.json",
-  "model": "opencode/nemotron-3-ultra-free",
+  "model": "opencode/glm-5.3-flash-free",
   "mcp": {
     "servers": {
       "satellite-mcp": {
@@ -39,19 +69,6 @@ cat > /root/.config/opencode/opencode.json << EOF
   }
 }
 EOF
-
-# Persist the OpenCode API key for the opencode provider when one was supplied.
-if [ -n "$OPENCODE_API_KEY" ]; then
-  mkdir -p /root/.local/share/opencode/
-  cat > /root/.local/share/opencode/auth.json << EOF
-{
-  "opencode": {
-    "type": "api",
-    "key": "$OPENCODE_API_KEY"
-  }
-}
-EOF
-fi
 
 # Download the Foreman raw CA certificate and save it to /root/foreman_raw_ca (using -k to ignore SSL issues since it's a self-signed cert, and using the internal Satellite FQDN).
 curl -k -o /root/foreman_raw_ca https://satellite.lab/unattended/public/foreman_raw_ca
@@ -78,27 +95,3 @@ EOF
 
 systemctl daemon-reload
 systemctl start satellite-mcp.service
-
-# Install and start OpenCode web interface systemd unit.
-cat > /etc/systemd/system/opencode.service << 'EOF'
-[Unit]
-Description=OpenCode Web Interface
-After=network-online.target
-Wants=network-online.target
-
-[Service]
-Type=simple
-ExecStart=/root/.opencode/bin/opencode serve --port 9999 --hostname 0.0.0.0
-Restart=on-failure
-RestartSec=5
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-chcon -t bin_t /root/.opencode/bin/opencode
-semanage fcontext -a -t bin_t '/root/.opencode/bin(/.*)?'
-restorecon -Rv /root/.opencode/bin/
-
-systemctl daemon-reload
-systemctl enable --now opencode.service

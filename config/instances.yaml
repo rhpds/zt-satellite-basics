@@ -1,11 +1,4 @@
 ---
-litemaas:
-  models:
-    - minimax-m2
-  duration: 1d
-  enable_user_info_messages: true
-  enable_user_info_data: true
-
 virtualmachines:
   - name: "satellite"
     image: "satellite-server-1-6-19-11-04-26"
@@ -133,17 +126,3 @@ virtualmachines:
       hostname: rhel-ai
       prefer_fqdn_over_hostname: true
       manage_etc_hosts: true
-    services:
-      - name: opencode
-        ports:
-          - port: 9999
-            protocol: TCP
-            targetPort: 9999
-            name: opencode
-    routes:
-      - name: opencode
-        host: opencode
-        service: opencode
-        targetPort: 9999
-        tls: true
-        tls_termination: edge
