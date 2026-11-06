@@ -37,7 +37,7 @@ oc_is_v2() {
 if ! oc_is_v2; then
   echo "Installing OpenCode v2 for root" >> "$LOG"
   for attempt in 1 2; do
-    if timeout 600 curl -fsSL https://opencode.ai/v2/install -o /tmp/opencode-v2-install.sh \
+    if timeout 600 curl -fsSL https://opencode.ai/v2/install -o /tmp/opencode-v2-install.sh 2>>"$LOG" \
        && HOME=/root timeout 600 bash /tmp/opencode-v2-install.sh --no-modify-path >> "$LOG" 2>&1 \
        && oc_is_v2; then
       break
