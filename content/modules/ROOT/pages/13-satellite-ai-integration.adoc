@@ -37,20 +37,6 @@ Click on the run button to run the following command to start `opencode`:
 opencode
 ----
 
-[NOTE]
---
-Opencode has a bug which emits spurious error messages upon launch. The messages can be removed with the following procedure.
-
-.opencode bug
-image::opencodebug.png[]
-
-. Press ctrl+p.
-
-. Press the escape key.
-
-This will open the opencode options menu. When you exit the menu, the error messages will be cleared.
---
-
 ====
 =====
 
