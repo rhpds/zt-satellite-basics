@@ -29,8 +29,7 @@
   vars:
     _showroom_env_guid: "{{ lookup('ansible.builtin.env', 'GUID') | default('') }}"
     _showroom_env_domain: "{{ lookup('ansible.builtin.env', 'DOMAIN') | default('') }}"
-    _showroom_env_litellm_url: "{{ lookup('ansible.builtin.env', 'LITELLM_API_URL') | default('') }}"
-    _showroom_env_litellm_key: "{{ lookup('ansible.builtin.env', 'LITELLM_API_KEY') | default('') }}"
+    _showroom_env_opencode_key: "{{ lookup('ansible.builtin.env', 'OPENCODE_API_KEY') | default('') }}"
   tasks:
     - ansible.builtin.wait_for_connection:
 
@@ -78,8 +77,7 @@
       environment:
         GUID: "{{ _showroom_env_guid }}"
         DOMAIN: "{{ _showroom_env_domain }}"
-        LITELLM_API_URL: "{{ _showroom_env_litellm_url }}"
-        LITELLM_API_KEY: "{{ _showroom_env_litellm_key }}"
+        OPENCODE_API_KEY: "{{ _showroom_env_opencode_key }}"
       register: r_result
 
     - name: Output script result
