@@ -1,62 +1,102 @@
 #!/bin/bash
 
-echo "starting setup-rhel-ai.sh" >> /tmp/setup-scripts/setup-rhel-ai.log
+LOG=/tmp/setup-scripts/setup-rhel-ai.log
+echo "starting setup-rhel-ai.sh" >> "$LOG"
 
-# SSH to Satellite, create admin Hammer access token for MCP.
-export FOREMAN_TOKEN=$(ssh satellite.lab 'hammer user access-token create --user=admin --name="mcp server token"' | tail -1)
+# SSH to Satellite and create an admin Hammer access token for MCP. Satellite's
+# services can still be coming up when setup runs, so retry instead of failing the
+# whole lab. Use a unique token name so re-running setup never collides with an
+# earlier token ("Name has already been taken").
+FOREMAN_TOKEN=""
+i=0
+while [ "$i" -lt 24 ]; do
+  i=$((i + 1))
+  TOKEN_NAME="mcp server token $(date +%s)-$i"
+  FOREMAN_TOKEN=$(ssh -o BatchMode=yes -o StrictHostKeyChecking=accept-new satellite.lab \
+    "hammer user access-token create --user=admin --name='$TOKEN_NAME'" 2>/dev/null | tail -1 | tr -d '\r')
+  # A failed hammer call prints an error message instead of a token; only accept
+  # a value that looks like an access token.
+  echo "$FOREMAN_TOKEN" | grep -qE '^[A-Za-z0-9_-]{16,}$' || FOREMAN_TOKEN=""
+  [ -n "$FOREMAN_TOKEN" ] && break
+  echo "Waiting for Satellite hammer (attempt $i/24)" >> "$LOG"
+  sleep 10
+done
+if [ -z "$FOREMAN_TOKEN" ]; then
+  echo "WARNING: could not create Foreman access token; continuing without it" >> "$LOG"
+fi
 
-# Upgrade opencode
-/root/.opencode/bin/opencode upgrade
+# Install OpenCode v2 for root. The lab terminal auto-logs in as root and root's PATH
+# puts /root/.opencode/bin first, so this is the binary participants run. The image
+# ships OpenCode 1 at that path, so the installer has to replace it in place.
+# Note: v2 reports its version as "opencode v2.x.y", not just "v2.x.y".
+OC_BIN=/root/.opencode/bin/opencode
+oc_is_v2() {
+  "$OC_BIN" --version 2>/dev/null | grep -qE '(^|v)2\.'
+}
 
-# Persist OpenCode LiteLLM configuration: write config.json with the Litellm provider configuration (heredoc unquoted so the variable is substituted).
-mkdir -p /root/.config/opencode/
-cat > /root/.config/opencode/config.json << EOF
+if ! oc_is_v2; then
+  echo "Installing OpenCode v2 for root" >> "$LOG"
+  for attempt in 1 2; do
+    if timeout 600 curl -fsSL https://opencode.ai/v2/install -o /tmp/opencode-v2-install.sh 2>>"$LOG" \
+       && HOME=/root timeout 600 bash /tmp/opencode-v2-install.sh --no-modify-path >> "$LOG" 2>&1 \
+       && oc_is_v2; then
+      break
+    fi
+    echo "OpenCode v2 install attempt $attempt failed" >> "$LOG"
+    sleep 10
+  done
+fi
+
+OC_V2=1
+if ! oc_is_v2; then
+  OC_V2=0
+  echo "WARNING: OpenCode v2 is not available; the AI module will be degraded" >> "$LOG"
+else
+  # The installer unpacks through /tmp, which can leave the binary labelled user_tmp_t.
+  restorecon -v "$OC_BIN" >> "$LOG" 2>&1 || true
+  OC_VERSION=$("$OC_BIN" --version 2>/dev/null)
+  echo "Using $OC_VERSION" >> "$LOG"
+fi
+
+# The lab is terminal-only now. Remove the web interface unit left behind by
+# earlier versions of this script so it cannot crash-loop on an existing deployment.
+if [ -f /etc/systemd/system/opencode.service ]; then
+  systemctl disable --now opencode.service >> "$LOG" 2>&1 || true
+  rm -f /etc/systemd/system/opencode.service
+  systemctl daemon-reload
+fi
+
+# Persist the OpenCode v2 configuration only when v2 is actually installed; a v2
+# config makes the v1 binary fail to start ("Invalid input mcp.servers").
+if [ "$OC_V2" = 1 ]; then
+  # Heredoc is unquoted so $FOREMAN_TOKEN is substituted; \$schema is escaped.
+  mkdir -p /root/.config/opencode/
+  cat > /root/.config/opencode/opencode.json << EOF
 {
   "\$schema": "https://opencode.ai/config.json",
-  "provider": {
-    "litellm": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "LiteLLM",
-      "options": {
-        "baseURL": "$LITELLM_API_URL"
-      },
-      "models": {
-        "minimax-m2": {
-          "name": "minimax-m2"
-        }
-      }
-    }
-  },
+  "model": "opencode/glm-5.3-flash-free",
   "mcp": {
-    "satellite-mcp": {
-      "type": "remote",
-      "url": "http://localhost:8080/mcp",
-      "enabled": true,
-      "headers": {
-        "FOREMAN_USERNAME": "admin",
-        "FOREMAN_TOKEN": "$FOREMAN_TOKEN"
+    "servers": {
+      "satellite-mcp": {
+        "type": "remote",
+        "url": "http://localhost:8080/mcp",
+        "oauth": false,
+        "headers": {
+          "FOREMAN_USERNAME": "admin",
+          "FOREMAN_TOKEN": "$FOREMAN_TOKEN"
+        }
+      },
+      "rhel-mcp": {
+        "type": "local",
+        "command": ["/usr/local/bin/linux-mcp-server","--no-verify-host-keys"]
       }
-    },
-    "rhel-mcp": {
-      "type": "local",
-      "enabled": true,
-      "command": ["/usr/local/bin/linux-mcp-server","--no-verify-host-keys"]
     }
-  },
-  "enabled_providers": ["litellm"]
-}
-EOF
-
-# Persist OpenCode LiteLLM API credentials: write auth.json with the LITELLM_API_KEY from the environment (heredoc unquoted so the variable is substituted).
-mkdir -p /root/.local/share/opencode/
-cat > /root/.local/share/opencode/auth.json << EOF
-{
-  "litellm": {
-    "type": "api",
-    "key": "$LITELLM_API_KEY"
   }
 }
 EOF
+else
+  rm -f /root/.config/opencode/opencode.json
+fi
 
 # Download the Foreman raw CA certificate and save it to /root/foreman_raw_ca (using -k to ignore SSL issues since it's a self-signed cert, and using the internal Satellite FQDN).
 curl -k -o /root/foreman_raw_ca https://satellite.lab/unattended/public/foreman_raw_ca
@@ -83,27 +123,3 @@ EOF
 
 systemctl daemon-reload
 systemctl start satellite-mcp.service
-
-# Install and start OpenCode web interface systemd unit.
-cat > /etc/systemd/system/opencode.service << 'EOF'
-[Unit]
-Description=OpenCode Web Interface
-After=network-online.target
-Wants=network-online.target
-
-[Service]
-Type=simple
-ExecStart=/root/.opencode/bin/opencode web --port 9999 --hostname 0.0.0.0
-Restart=on-failure
-RestartSec=5
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-chcon -t bin_t /root/.opencode/bin/opencode
-semanage fcontext -a -t bin_t '/root/.opencode/bin(/.*)?'
-restorecon -Rv /root/.opencode/bin/
-
-systemctl daemon-reload
-systemctl enable --now opencode.service

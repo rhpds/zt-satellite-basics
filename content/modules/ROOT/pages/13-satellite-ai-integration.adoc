@@ -24,7 +24,7 @@ For IT Decision Makers: It maximizes team productivity, especially in tight labo
 
 The `rhel-ai.lab` system is pre-installed with `opencode` client. `opencode` is a tui based command line tool that allows users to interact with the MCP server and LLMs.
 
-This lab is configured to use the `minimax-m2` model, which is a powerful LLM that can provide intelligent insights and recommendations based on the data it receives from the Satellite MCP server.
+This lab is configured to use the `glm-5.3-flash-free` model, a free OpenCode model that can provide intelligent insights and recommendations based on the data it receives from the Satellite MCP server.
 
 First, click on the `rhel-ai.lab terminal` tab.
 
@@ -36,25 +36,6 @@ Click on the run button to run the following command to start `opencode`:
 ----
 opencode
 ----
-
-[NOTE]
---
-Opencode has a bug which emits spurious error messages upon launch. The messages can be removed with the following procedure.
-
-.opencode bug
-image::opencodebug.png[]
-
-. Press ctrl+p.
-
-. Press the escape key.
-
-This will open the opencode options menu. When you exit the menu, the error messages will be cleared.
---
-
-You may choose to use the web gui for Opencode instead of the terminal interface. Click on the tab `+rhel-ai.lab Web GUI+` to access the web interface. Click on the project called +/+ to open the prompt.
-
-.Opencode WebGUI
-image::opencode_webgui.png[]
 
 ====
 =====
@@ -114,7 +95,7 @@ image::appliederrata.png[]
 
 It may take a couple minutes before `+rhel1+` is fully updated.
 
-IMPORTANT: The efficacy of the LLM's ability to apply commands to run operations like patching depends on the quality of the LLM. In this lab, we are using the `minimax-m2` model because it's cheap. It's not particularly good at interpreting intent and thus fails at many tasks. For better results, use a higher quality model.
+IMPORTANT: The efficacy of the LLM's ability to apply commands to run operations like patching depends on the quality of the LLM. In this lab, we are using the free `glm-5.3-flash-free` model. Free-tier models can be slower and less reliable at interpreting intent, and may fail at some tasks. For better results, use a higher quality model.
 
 You can try asking the LLM to perform other tasks.
 
