@@ -9,13 +9,16 @@ echo "starting setup-rhel-ai.sh" >> "$LOG"
 # earlier token ("Name has already been taken").
 FOREMAN_TOKEN=""
 i=0
-while [ "$i" -lt 12 ]; do
+while [ "$i" -lt 24 ]; do
   i=$((i + 1))
   TOKEN_NAME="mcp server token $(date +%s)-$i"
   FOREMAN_TOKEN=$(ssh -o BatchMode=yes -o StrictHostKeyChecking=accept-new satellite.lab \
-    "hammer user access-token create --user=admin --name='$TOKEN_NAME'" 2>/dev/null | tail -1)
+    "hammer user access-token create --user=admin --name='$TOKEN_NAME'" 2>/dev/null | tail -1 | tr -d '\r')
+  # A failed hammer call prints an error message instead of a token; only accept
+  # a value that looks like an access token.
+  echo "$FOREMAN_TOKEN" | grep -qE '^[A-Za-z0-9_-]{16,}$' || FOREMAN_TOKEN=""
   [ -n "$FOREMAN_TOKEN" ] && break
-  echo "Waiting for Satellite hammer (attempt $i/12)" >> "$LOG"
+  echo "Waiting for Satellite hammer (attempt $i/24)" >> "$LOG"
   sleep 10
 done
 if [ -z "$FOREMAN_TOKEN" ]; then
